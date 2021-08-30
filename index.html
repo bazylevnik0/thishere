@@ -96,7 +96,7 @@
 
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    	var scene_back = scene.clone()
+    	var scene_back = scene
 	console.log(scene)
 	//var container = new BABYLON.AssetContainer(scene);
 	//console.log(container)
@@ -233,7 +233,7 @@ function readFiles() {
 		}
 		
 		//scene.dispose()
-		scene_prepare();
+		scene = scene_back;
 		console.log("uploadMode")
 
 	}
