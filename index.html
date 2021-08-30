@@ -112,14 +112,18 @@
 
 
 	//upload
-	function load_files () {
+	function loadFiles () {
+		console.log("loadFiles");
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
-		BABYLON.SceneLoader.ImportMeshAsync("", files_url, files_names[1]+'.obj').then((result) => {
+		
+		
+		BABYLON.SceneLoader.ImportMeshAsync("", files_info[1][0], files_info[1][1]).then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
+		
 	})
 	}
     </script>
@@ -127,7 +131,7 @@
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
    <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files" multiple onchange="read_files()">
+   <input type="file" id="files" name="files" webkitdirectory multiple onchange="readFiles()">
  </div>
  <div>
    <button>Submit</button>
@@ -158,27 +162,24 @@ function drop(ev) {
 
 //input 
 var files
-var files_url = "blob:https://bazylevnik0.github.io/" // TEMP!! must change to global
-var files_names = []
-function read_files() {
+var files_info = []
+function readFiles() {
+    console.log("readFiles")
 	// this png 
 	// this obj
 		   //?
 
     files = document.getElementById('files').files;
     console.log(files)
-
-    let temp;
-	//blob:https://bazylevnik0.github.io/4044aeb9-dcce-4baf-9da4-0feacb551b7aobj.obj
-    for(let i = 0; i < files.length; i++) {
-	temp = URL.createObjectURL(files[i]).toString()
-	console.log(temp)
-	temp = temp.slice(35,); // TEMP!! must change to global, use matches 
-	files_names.push(temp);
-	console.log(temp)
+    let temp
+    for(let i = 0; i < files.length; i++){
+	temp = files[i].webkitRelativePath;
+	console.log(temp);
+	files_info.push([temp,files[i].name]);
     }
 
-    load_files();
+
+    loadFiles();
 }
 </script>
 
