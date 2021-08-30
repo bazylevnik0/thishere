@@ -56,13 +56,6 @@
     height: 100px;
     position: absolute;
     bottom: 150px;
-    left: 45%;
-}
-#forward {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 150px;
     left: 50%;
 }
 #return {
@@ -219,13 +212,6 @@ function readFiles() {
 		uploadMode();
 	}
 </script>
-<button id="forward" onclick="forwardClick()">return</button>
-<script>
-	let forward_button = document.getElementById('forward')
-	function forwardClick() {
-		console.log("forwardClick"); 
-	}
-</script>
 <button id="photo" onclick="photoClick()">return</button>
 <script>
 	let photo_button = document.getElementById('photo')
@@ -259,7 +245,6 @@ function sizeChange() {
 	function editMode() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
-		forward_button.style.zIndex=8
 		photo_button.style.zIndex=8
 		level.style.zIndex=8
 		size.style.zIndex=8
@@ -272,7 +257,6 @@ function sizeChange() {
 	function uploadMode() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
-		forward_button.style.zIndex=0
 		photo_button.style.zIndex=0
 	     level.style.zIndex=0
 		size.style.zIndex=0
