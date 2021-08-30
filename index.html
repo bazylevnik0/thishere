@@ -199,7 +199,7 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
-		files = []
+		document.getElementById('files').files = []
 		uploadMode();
 	}
 </script>
@@ -209,7 +209,7 @@ function readFiles() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
 		console.log("editMode")
-//		container.addAllToScene()
+		container.addAllToScene()
 	}
 
 	function uploadMode() {
