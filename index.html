@@ -271,6 +271,31 @@ var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI"
     advancedTexture.addControl(button1);    
 
 //slider
+
+var grid = new BABYLON.GUI.Grid();
+
+    advancedTexture.addControl(grid);
+
+
+
+    grid.addColumnDefinition(0.25);
+
+    grid.addColumnDefinition(0.25);
+
+    grid.addColumnDefinition(0.25);
+
+    grid.addColumnDefinition(0.25);
+
+    grid.addRowDefinition(0.25);
+
+    grid.addRowDefinition(0.25);
+
+    grid.addRowDefinition(0.25);
+
+    grid.addRowDefinition(0.25);
+
+
+//
     var addImageSlider = function(isVertical, isClamped, displayThumb, row, col) {
 
         var panel = new BABYLON.GUI.StackPanel();
@@ -357,11 +382,8 @@ var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI"
 
 
 
-
-    addImageSlider(false, false, true, 0, 3);
-
-    addImageSlider(true, false, true, 1, 3);
-
+addImageSlider(true, true, true, 1, 2);
+addImageSlider(true, true, true, 1, 3);
 
 
 </script>
