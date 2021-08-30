@@ -34,7 +34,6 @@
               position: absolute;
               z-index: 2;
           }
-
 	#upload {
     position: absolute;
     height: 500px;
@@ -52,6 +51,7 @@
 }
 
 
+	<!-- ADD FADEIN FADEOUT ANIMATION -->
 #photo {
     width: 100px;
     height: 100px;
@@ -219,6 +219,23 @@ function readFiles() {
 		console.log("photoClick"); 
 	}
 </script>
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="level" onchange="levelChange()">
+</div>
+<script>
+function levelChange() {
+	console.log("levelChange")
+}
+</script>
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="size" onchange="levelChange()">
+</div>
+
+<script>
+function sizeChange() {
+	console.log("sizeChange")
+}
+</script>
    </body>
 <script>
 	function editMode() {
@@ -235,8 +252,8 @@ function readFiles() {
 	function uploadMode() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
-		forward_button.style.zIndex=8
-		photo_button.style.zIndex=8
+		forward_button.style.zIndex=0
+		photo_button.style.zIndex=0
 	
 		   
 		    BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
