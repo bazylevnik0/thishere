@@ -216,9 +216,20 @@ function readFiles() {
 </script>
 <button id="photo" class="ui" onclick="photoClick()">photo</button>
 <script>
+        let ui_classes = document.getElementsByClassName('ui');
 	let photo_button = document.getElementById('photo')
 	function photoClick() {
-		console.log("photoClick"); 
+		console.log("photoClick");
+		for (let i = 0; i < ui_classes.length; i++) {
+			ui_classes[i].style.visible = false;
+		}
+
+		setTimeout( function () {
+			
+			for (let i = 0; i < ui_classes.length; i++) {
+				ui_classes[i].style.visible = true;
+			} , 750);
+		 
 	}
 </script>
 <div class="slidecontainer">
@@ -251,9 +262,9 @@ function sizeChange() {
 	
           size_value = size.value;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].scaling.x =level_value*0.05
-            scene.meshes[i].scaling.y =level_value*0.05
-            scene.meshes[i].scaling.z =level_value*0.05
+	    scene.meshes[i].scaling.x =size_value*0.05
+            scene.meshes[i].scaling.y =size_value*0.05
+            scene.meshes[i].scaling.z =size_value*0.05
        
 	 }            
 }
