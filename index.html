@@ -171,8 +171,9 @@ function read_files() {
     let temp;
 	//blob:https://bazylevnik0.github.io/4044aeb9-dcce-4baf-9da4-0feacb551b7aobj.obj
     for(let i = 0; i < files.length; i++) {
-	console.log(URL.createObjectURL(files[i]).toString());
-	temp = URL.createObjectURL(files[i]).toString().slice(35,); // TEMP!! must change to global, use matches 
+	temp = URL.createObjectURL(files[i]).toString()
+	console.log(temp)
+	temp = temp.slice(35,); // TEMP!! must change to global, use matches 
 	files_names.push(temp);
 	console.log(temp)
     }
