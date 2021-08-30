@@ -130,8 +130,7 @@ keepAssets.lights.push(light);
 	//upload
 	function loadFiles () {
 		console.log("loadFiles")
-		editMode();
-
+	
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		
@@ -182,6 +181,7 @@ function drop(ev) {
 //input 
 var files , reader
 function readFiles() {
+	editMode();
     console.log("readFiles")
 	// this png 
 	// this obj
