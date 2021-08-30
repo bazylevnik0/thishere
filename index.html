@@ -138,7 +138,7 @@ function scene_prepare() {
 	
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
-		
+		scene_prepare();
 		//if obj not zero element we need find obj!
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		result.meshes[1].scaling.x = 0.25;
@@ -229,7 +229,7 @@ function readFiles() {
 			scene.meshes[0].dispose();
 		}
 		scene.dispose()
-		scene_prepare();
+		//scene_prepare();
 		console.log("uploadMode")
 
 	}
