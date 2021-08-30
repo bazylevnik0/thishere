@@ -131,7 +131,7 @@
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
    <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files" onchange="readFiles()" webkitdirectory multiple>
+   <input type="file" id="files" name="files" webkitdirectory multiple>
  </div>
  <div>
    <button>Submit</button>
@@ -161,10 +161,13 @@ function drop(ev) {
 }
 
 //input 
+
+document.getElementById("files").addEventListener("change", readFiles(event),false);
 var files
 var files_info = []
-function readFiles() {
+function readFiles(event) {
     console.log("readFiles")
+    console.log(event)
 	// this png 
 	// this obj
 		   //?
