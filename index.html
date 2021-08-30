@@ -39,7 +39,6 @@
     position: absolute;
     height: 500px;
     top: 500px;
-    z-index: 5;
 }
 
 	#div_drop {
@@ -56,7 +55,6 @@
     height: 100px;
     position: absolute;
     top: 150px;
-    z-index: 4;
     left: 45%;
 }
 
@@ -128,6 +126,8 @@ keepAssets.lights.push(light);
 	//upload
 	function loadFiles () {
 		console.log("loadFiles")
+		editMode();
+
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		
@@ -137,7 +137,6 @@ keepAssets.lights.push(light);
     		result.meshes[1].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
-		editMode();
 	})
 	
 	}
@@ -159,7 +158,8 @@ keepAssets.lights.push(light);
 <img id="drop" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
 
 <script>
-
+	 upload_form = document.getElementById('upload');
+   
 //drag and drop
 function allowDrop(ev) {
   ev.preventDefault();
@@ -196,6 +196,7 @@ function readFiles() {
 </script>
 <button id="return" onclick="returnClick()">return</button>
 <script>
+	let return_button = document.getElementById('return')
 	function returnClick() {
 		uploadMode();
 	}
@@ -203,10 +204,16 @@ function readFiles() {
    </body>
 <script>
 	function editMode() {
+		upload_form.style.zIndex=0
+		return_button.style.zIndex=8
 		console.log("editMode")
+		container.addAllToScene()
 	}
 
 	function uploadMode() {
+		upload_form.style.zIndex=8
+		return_button.style.zIndex=0
+	
 		console.log("uploadMode")
 container.moveAllFromScene(keepAssets);
 	}
