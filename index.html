@@ -55,7 +55,7 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    bottom: 100px;
+    top: 150px;
     z-index: 4;
     left: 45%;
 }
@@ -131,8 +131,7 @@
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
-		console.log(myMesh1)
-
+		console.log(result)
 		editMode();
 	})
 	
@@ -190,10 +189,10 @@ function readFiles() {
     loadFiles();
 }
 </script>
-<button id="return" onclick="returnClick">return</button>
+<button id="return" onclick="returnClick()">return</button>
 <script>
 	function returnClick() {
-		uploadmode();
+		uploadMode();
 	}
 </script>
    </body>
