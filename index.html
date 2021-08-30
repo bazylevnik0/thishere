@@ -116,15 +116,15 @@
 		console.log("loadFiles")
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
-		/*
-		BABYLON.SceneLoader.ImportMeshAsync("", files_url, files_names[1]+'.obj').then((result) => {
+		
+		BABYLON.SceneLoader.ImportMeshAsync("", "./temp/", "obj.obj").then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		
 	})
-	*/
+	
 	}
     </script>
 
@@ -168,18 +168,15 @@ function readFiles() {
 	// this obj
 		   //?
 
-    reader = new FileReader();
-
     files = document.getElementById('files').files;
     console.log(files)
 
-    reader.onload = (function(obj) { 
-	  let temp;
+    let temp;
     for(let i = 0; i < files.length; i++) {
-   	console.log(files[i].name , obj.src)
+	files[i].webkitRelativePath = "./temp/"
+   	console.log(files[i].name , files[i].webkitRelativePath)
     }
-     })
-    console.log(reader) 
+  
     loadFiles();
 }
 </script>
