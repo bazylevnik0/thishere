@@ -145,9 +145,21 @@ function drop(ev) {
 
 //input 
 var files
-
+var files_urls
 function read_files() {
+	// this png 
+	// this obj
+		   //?
+
     files = document.getElementById('files').files[0];
+    console.log(files)
+
+    let temp;
+    for(let i = 0; i < files.length; i++) {
+	temp = URL.createObjectURL(files[i]); 
+	files_urls.push(temp);
+	console.log(temp)
+    }
 }
 </script>
 
