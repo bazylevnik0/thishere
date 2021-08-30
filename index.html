@@ -138,6 +138,7 @@ keepAssets.lights.push(light);
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		
+		//if obj not zero element we need find obj!
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
@@ -206,7 +207,7 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
-		for (let i = 0; i < scene.meshes.length; i ++) {
+		for (let i = 0; i <= scene.meshes.length; i ++) {
 			scene.meshes[0].dispose();
 		}
 		uploadMode();
