@@ -210,8 +210,7 @@ function readFiles() {
 	function returnClick() {
 		document.getElementById('files').value = ""
 		for (let i = 0; i < scene.meshes.length; i ++) {
-			scene.meshes[i].geometry.dispose();
-			scene.meshes[i].material.dispose();
+			scene.meshes[0].dispose();
 		}
 		uploadMode();
 	}
