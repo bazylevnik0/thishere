@@ -205,7 +205,7 @@ function readFiles() {
     loadFiles();
 }
 </script>
-<button id="return" onclick="returnClick()">return</button>
+<button id="return" class="ui" onclick="returnClick()">return</button>
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
@@ -214,7 +214,7 @@ function readFiles() {
 		uploadMode();
 	}
 </script>
-<button id="photo" onclick="photoClick()">photo</button>
+<button id="photo" class="ui" onclick="photoClick()">photo</button>
 <script>
 	let photo_button = document.getElementById('photo')
 	function photoClick() {
@@ -222,7 +222,7 @@ function readFiles() {
 	}
 </script>
 <div class="slidecontainer">
-  <input type="range" min="-50" max="50" value="0" class="slider" id="level" oninput="levelChange()">
+  <input type="range" min="-50" max="50" value="0"  class="ui" id="level" oninput="levelChange()">
 </div>
 <script>
 level = document.getElementById('level');
@@ -232,15 +232,15 @@ function levelChange() {
 
           level_value = level.value;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].scaling.x+=level_value*0.05
-            scene.meshes[i].scaling.y+=level_value*0.05
-            scene.meshes[i].scaling.z+=level_value*0.05
+	    scene.meshes[i].scaling.x =level_value*0.05
+            scene.meshes[i].scaling.y =level_value*0.05
+            scene.meshes[i].scaling.z =level_value*0.05
        	 }            
 
 }
 </script>
 <div class="slidecontainer">
-  <input type="range" min="-50" max="50" value="0" class="slider" id="size" oninput="levelChange()">
+  <input type="range" min="-50" max="50" value="0" class="ui" id="size" oninput="levelChange()">
 </div>
 
 <script>
@@ -252,7 +252,7 @@ function sizeChange() {
 	
           size_value = size.value;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].scaling.y+=level_value*0.01
+	    scene.meshes[i].position.y = level_value*0.01
        	 }            
 }
 </script>
