@@ -113,8 +113,8 @@
 
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
-   <label for="file">Choose file to upload</label>
-   <input type="file" id="file" name="file" multiple>
+   <label for="files">Choose file to upload</label>
+   <input type="file" id="files" name="files" multiple onchange="read_files()">
  </div>
  <div>
    <button>Submit</button>
@@ -127,6 +127,8 @@
 <img id="drop" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
 
 <script>
+
+//drag and drop
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -139,6 +141,13 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
+}
+
+//input 
+var files
+
+function read_files() {
+    files = document.getElementById('files').files[0];
 }
 </script>
 
