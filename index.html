@@ -140,9 +140,11 @@
 		//if obj not zero element we need find obj!
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		console.log(result.meshes)
-		result.meshes[1].scaling.x = 0.25;
-    		result.meshes[1].scaling.y = 0.25;
-    		result.meshes[1].scaling.z = 0.25;
+		for (let i = 0; i < result.meshes.length; i++) {
+		result.meshes[i].scaling.x = 0.25;
+    		result.meshes[i].scaling.y = 0.25;
+    		result.meshes[i].scaling.z = 0.25;
+		}
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
 	})
