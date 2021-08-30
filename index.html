@@ -161,21 +161,25 @@ function drop(ev) {
 }
 
 //input 
-var files
+var files , reader
 function readFiles() {
     console.log("readFiles")
 	// this png 
 	// this obj
 		   //?
 
+    reader = new FileReader();
+
     files = document.getElementById('files').files;
     console.log(files)
 
-    let temp;
+    reader.onload = (function(obj) { 
+	  let temp;
     for(let i = 0; i < files.length; i++) {
-   	console.log(files[i].name , files[i].webkitRelativePath)
+   	console.log(files[i].name , obj.src)
     }
-
+     })
+    console.log(reader) 
     loadFiles();
 }
 </script>
