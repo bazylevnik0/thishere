@@ -113,17 +113,16 @@
 
 	//upload
 	function loadFiles () {
-		console.log("loadFiles");
+		console.log("loadFiles")
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
-		
-		
-		BABYLON.SceneLoader.ImportMeshAsync("", files_info[0][0], files_info[0][1]).then((result) => {
+		/*
+		BABYLON.SceneLoader.ImportMeshAsync("", files_url, files_names[1]+'.obj').then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
-		
+		*/
 	})
 	}
     </script>
@@ -131,7 +130,7 @@
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
    <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files" webkitdirectory multiple>
+   <input type="file" id="files" name="files" multiple onchange="read_files()">
  </div>
  <div>
    <button>Submit</button>
@@ -161,28 +160,22 @@ function drop(ev) {
 }
 
 //input 
-
-document.getElementById("files").addEventListener("change", readFiles(event),false);
 var files
-var files_info = []
-function readFiles(event) {
+function readFiles() {
     console.log("readFiles")
-    console.log(event)
 	// this png 
 	// this obj
 		   //?
 
-    files = event.target.files;
+    files = document.getElementById('files').files;
     console.log(files)
-    let temp
-    for(let i = 0; i < files.length; i++){
-	temp = files[i].webkitRelativePath;
-	console.log(temp);
-	files_info.push([temp,files[i].name]);
+
+    let temp;
+    for(let i = 0; i < files.length; i++) {
+   	console.log(files[i].name , files[i].webkitRelativePath)
     }
 
-
-    loadFiles();
+    load_files();
 }
 </script>
 
