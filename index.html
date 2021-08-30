@@ -95,7 +95,15 @@
 	camera.attachControl(canvas, true);
 
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+	function scene_prepare() {
+			scene = new BABYLON.Scene(engine);
+       scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+	camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
+	camera.attachControl(canvas, true);
 
+	light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+	scene.render();
+	}
 
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
@@ -111,7 +119,7 @@
 	//upload
 	function loadFiles () {
 		console.log("loadFiles")
-	
+		scene_prepare();
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		//if obj not zero element we need find obj!
