@@ -98,11 +98,11 @@
 
     
 	console.log(scene)
-	var container = new BABYLON.AssetContainer(scene);
-	console.log(container)
-	var keepAssets = new BABYLON.KeepAssets();
-keepAssets.cameras.push(camera);
-keepAssets.lights.push(light);
+	//var container = new BABYLON.AssetContainer(scene);
+	//console.log(container)
+	//var keepAssets = new BABYLON.KeepAssets();
+//keepAssets.cameras.push(camera);
+//keepAssets.lights.push(light);
 
 			 scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
@@ -208,9 +208,7 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
-		for (let i = 0; i < scene.meshes.length; i++) {
-			scene.meshes[0].dispose();
-		}
+	
 		uploadMode();
 	}
 </script>
@@ -220,15 +218,18 @@ function readFiles() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
 		console.log("editMode")
-		container.addAllToScene()
+		//container.addAllToScene()
 	}
 
 	function uploadMode() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
-	
+		
+		for (let i = 0; i < scene.meshes.length; i++) {
+			scene.meshes[0].dispose();
+		}
+		scene.dispose()
 		console.log("uploadMode")
-		container.moveAllFromScene(keepAssets);
 
 	}
 </script>
