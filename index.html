@@ -104,7 +104,6 @@
 keepAssets.cameras.push(camera);
 keepAssets.lights.push(light);
 
-	function scene_prepare() {
 			 scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 	 camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
@@ -120,7 +119,6 @@ keepAssets.lights.push(light);
 keepAssets.cameras.push(camera);
 keepAssets.lights.push(light);
 
-	}
 
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
@@ -140,7 +138,7 @@ keepAssets.lights.push(light);
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		
-		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , file[0].name).then((result) => {
+		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
@@ -208,7 +206,6 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
-		document.getElementById('files').value = ""
 		for (let i = 0; i < scene.meshes.length; i ++) {
 			scene.meshes[0].dispose();
 		}
@@ -221,8 +218,7 @@ function readFiles() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
 		console.log("editMode")
-		scene_prepare();
-		//container.addAllToScene()
+		container.addAllToScene()
 	}
 
 	function uploadMode() {
@@ -230,7 +226,7 @@ function readFiles() {
 		return_button.style.zIndex=0
 	
 		console.log("uploadMode")
-container.moveAllFromScene(keepAssets);
+		container.moveAllFromScene(keepAssets);
 
 	}
 </script>
