@@ -108,6 +108,22 @@
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
                 scene.render();
+		    // Game/Render loop
+    scene.onBeforeRenderObservable.add(()=>{
+        if(leftJoystick.pressed){
+            moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+           camera.rotation.x+=moveX
+           camera.rotation.z+=moveZ
+            
+        }
+        if(rightJoystick.pressed){
+            moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+           camera.position.x+=moveXX
+           camera.position.z+=moveZZ
+         }
+    })
         });
 
         // Watch for browser/canvas resize events
@@ -220,6 +236,13 @@ function readFiles() {
 		console.log("uploadMode")
 
 	}
+
+var leftJoystick = new BABYLON.VirtualJoystick(false);
+    var rightJoystick = new BABYLON.VirtualJoystick(true);
+    BABYLON.VirtualJoystick.Canvas.style.zIndex = "4";
+  var movespeed = 5
+  
+
 
 </script>
 </html>
