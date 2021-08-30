@@ -1,2 +1,2 @@
-trying build selfmade vr app
+trying build selfmade ar app
 test
