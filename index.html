@@ -116,9 +116,10 @@
 		//maybe we must correct link obj to mtl
 		//if obj not zero element we need find obj!
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
-    		result.meshes[0].scaling.x = 0.25;
-    		result.meshes[0].scaling.y = 0.25;
-    		result.meshes[0].scaling.z = 0.25;
+    		console.log(result.meshes)
+		result.meshes[1].scaling.x = 0.25;
+    		result.meshes[1].scaling.y = 0.25;
+    		result.meshes[1].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
 	})
