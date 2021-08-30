@@ -95,8 +95,6 @@
 	camera.attachControl(canvas, true);
 
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-	
-var meshes_template = scene.meshes;
 
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
@@ -201,8 +199,7 @@ function readFiles() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
 		
-		scene.meshes = [];
-		scene.meshes = meshes_template;
+		scene.meshes = scne.meshes.constructor();
 		console.log("uploadMode")
 
 	}
