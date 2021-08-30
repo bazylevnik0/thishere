@@ -222,24 +222,38 @@ function readFiles() {
 	}
 </script>
 <div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="level" oninput="levelChange()">
+  <input type="range" min="-50" max="50" value="0" class="slider" id="level" oninput="levelChange()">
 </div>
 <script>
 level = document.getElementById('level');
-
+let level_value;
 function levelChange() {
 	console.log("levelChange")
+
+          level_value = level.value;
+          for (let i = 0; i < scene.meshes.length; i++) {
+	    scene.meshes[i].scaling.x+=level_value*0.05
+            scene.meshes[i].scaling.y+=level_value*0.05
+            scene.meshes[i].scaling.z+=level_value*0.05
+       	 }            
+
 }
 </script>
 <div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="size" oninput="levelChange()">
+  <input type="range" min="-50" max="50" value="0" class="slider" id="size" oninput="levelChange()">
 </div>
 
 <script>
 
 size = document.getElementById('size');
+let size_value
 function sizeChange() {
 	console.log("sizeChange")
+	
+          size_value = size.value;
+          for (let i = 0; i < scene.meshes.length; i++) {
+	    scene.meshes[i].scaling.y+=level_value*0.01
+       	 }            
 }
 </script>
    </body>
