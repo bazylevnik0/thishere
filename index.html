@@ -277,11 +277,13 @@ var grid = new BABYLON.GUI.Grid();
   
 
 //
+ var panel;
     var addImageSlider = function(isVertical, isClamped, displayThumb) {
 
-        var panel = new BABYLON.GUI.StackPanel();
+        panel = new BABYLON.GUI.StackPanel();
 
         panel.width = "220px";
+	panel.zIndex = 9;
 
         advancedTexture.addControl(panel);
 
