@@ -104,7 +104,7 @@
 //keepAssets.cameras.push(camera);
 //keepAssets.lights.push(light);
 
-funcrion scene_prepare() {
+function scene_prepare() {
 			 scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 	 camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
@@ -114,11 +114,11 @@ funcrion scene_prepare() {
 
     
 	console.log(scene)
-	container = new BABYLON.AssetContainer(scene);
-	console.log(container)
-	 keepAssets = new BABYLON.KeepAssets();
-keepAssets.cameras.push(camera);
-keepAssets.lights.push(light);
+	//container = new BABYLON.AssetContainer(scene);
+	//console.log(container)
+	 //keepAssets = new BABYLON.KeepAssets();
+//keepAssets.cameras.push(camera);
+//keepAssets.lights.push(light);
 }
 
 	// Register a render loop to repeatedly render the scene
