@@ -230,30 +230,8 @@ function readFiles() {
 
 	}
 
-//sticks
-var leftJoystick = new BABYLON.VirtualJoystick(false);
-    var rightJoystick = new BABYLON.VirtualJoystick(true);
-    BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
-  var movespeed = 5
-  
- scene.onBeforeRenderObservable.add(()=>{
-        if(leftJoystick.pressed){
-            moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-          for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].rotation.x+=moveX
-            scene.meshes[i].rotation.z+=moveZ
-	 }            
-        }
-        if(rightJoystick.pressed){
-            moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-         for (let j = 0; j < scene.meshes.length; j++) {
-	   scene.meshes[j].position.x+=moveXX
-           scene.meshes[j].position.z+=moveZZ
-         }
-	}
-    })
+//slider
+
 
 //button
 var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
@@ -280,9 +258,7 @@ var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI"
 var addSlider = function(isVertical, isClamped, displayThumb) {
 
         var panel = new BABYLON.GUI.StackPanel();
-
         panel.width = "220px";
-
         advancedTexture.addControl(panel);
 
 
@@ -434,6 +410,31 @@ var addSlider = function(isVertical, isClamped, displayThumb) {
 addImageSlider(true, true, true );
 addImageSlider(true, true, true );
 
+
+//sticks
+var leftJoystick = new BABYLON.VirtualJoystick(false);
+    var rightJoystick = new BABYLON.VirtualJoystick(true);
+    BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
+  var movespeed = 5
+  
+ scene.onBeforeRenderObservable.add(()=>{
+        if(leftJoystick.pressed){
+            moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+          for (let i = 0; i < scene.meshes.length; i++) {
+	    scene.meshes[i].rotation.x+=moveX
+            scene.meshes[i].rotation.z+=moveZ
+	 }            
+        }
+        if(rightJoystick.pressed){
+            moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+         for (let j = 0; j < scene.meshes.length; j++) {
+	   scene.meshes[j].position.x+=moveXX
+           scene.meshes[j].position.z+=moveZZ
+         }
+	}
+    })
 
 </script>
 </html>
