@@ -109,6 +109,18 @@
         window.addEventListener("resize", function () {
                 engine.resize();
         });
+
+
+	//upload
+	function load_files () {
+	//important! we must check real size and correct this 
+		BABYLON.SceneLoader.ImportMeshAsync("", files_urls[1], "obj.obj").then((result) => {
+    		result.meshes[1].scaling.x = 0.25;
+    		result.meshes[1].scaling.y = 0.25;
+    		result.meshes[1].scaling.z = 0.25;
+    		var myMesh1 = scene.getMeshByName("myMesh_1");
+	})
+	}
     </script>
 
 <form id="upload" method="post" enctype="multipart/form-data">
@@ -156,7 +168,7 @@ function read_files() {
 
     let temp;
     for(let i = 0; i < files.length; i++) {
-	temp = URL.createObjectURL(files[i]); 
+	temp = URL.createObjectURL(files[i]).toString(); 
 	files_urls.push(temp);
 	console.log(temp)
     }
