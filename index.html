@@ -89,7 +89,7 @@
         const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
         // Add your code here matching the playground format
-	const scene = new BABYLON.Scene(engine);
+	var scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 	const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
 	camera.attachControl(canvas, true);
@@ -108,6 +108,11 @@
 	*/
     
 	console.log(scene)
+	var container = new BABYLON.AssetContainer(scene);
+	console.log(container)
+	var keepAssets = new BABYLON.KeepAssets();
+keepAssets.cameras.push(camera);
+keepAssets.lights.push(light);
 
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
@@ -203,6 +208,7 @@ function readFiles() {
 
 	function uploadMode() {
 		console.log("uploadMode")
+container.moveAllFromScene(keepAssets);
 	}
 </script>
 </html>
