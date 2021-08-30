@@ -51,12 +51,20 @@
 	z-index: 3;
 }
 
+
+#forward {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+}
 #return {
     width: 100px;
     height: 100px;
     position: absolute;
     top: 150px;
-    left: 45%;
+    left: 40%;
 }
 
 
@@ -187,6 +195,13 @@ function readFiles() {
   		document.getElementById('files').value = "";
 		scene.meshes = scene.meshes.constructor();
 		uploadMode();
+	}
+</script>
+<button id="forward" onclick="forwardClick()">return</button>
+<script>
+	let forward_button = document.getElementById('forward')
+	function forwardClick() {
+		console.log("forwardClick"); 
 	}
 </script>
    </body>
