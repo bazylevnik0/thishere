@@ -96,33 +96,6 @@
 
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    	var scene_back = scene
-	console.log(scene)
-	//var container = new BABYLON.AssetContainer(scene);
-	//console.log(container)
-	//var keepAssets = new BABYLON.KeepAssets();
-//keepAssets.cameras.push(camera);
-//keepAssets.lights.push(light);
-
-function scene_prepare() {
-	scene = scene_back;
-/*
-			 scene = new BABYLON.Scene(engine);
-       scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
-	 camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
-	camera.attachControl(canvas, true);
-
-	light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-
-    
-	console.log(scene)
-	//container = new BABYLON.AssetContainer(scene);
-	//console.log(container)
-	 //keepAssets = new BABYLON.KeepAssets();
-//keepAssets.cameras.push(camera);
-//keepAssets.lights.push(light);
-*/
-}
 
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
@@ -141,12 +114,11 @@ function scene_prepare() {
 	
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
-		scene_prepare();
 		//if obj not zero element we need find obj!
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
-    		result.meshes[1].scaling.x = 0.25;
-    		result.meshes[1].scaling.y = 0.25;
-    		result.meshes[1].scaling.z = 0.25;
+    		result.meshes[0].scaling.x = 0.25;
+    		result.meshes[0].scaling.y = 0.25;
+    		result.meshes[0].scaling.z = 0.25;
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
 	})
@@ -190,7 +162,7 @@ function drop(ev) {
 //input 
 var files , reader
 function readFiles() {
-	editMode();
+    editMode();
     console.log("readFiles")
 	// this png 
 	// this obj
@@ -221,7 +193,6 @@ function readFiles() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
 		console.log("editMode")
-		//container.addAllToScene()
 	}
 
 	function uploadMode() {
@@ -231,9 +202,6 @@ function readFiles() {
 		for (let i = 0; i <= scene.meshes.length; i++) {
 			scene.meshes[0].dispose();
 		}
-		
-		//scene.dispose()
-		scene = scene_back;
 		console.log("uploadMode")
 
 	}
