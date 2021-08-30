@@ -200,9 +200,7 @@ function readFiles() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
 		
-		for (let i = 0; i <= scene.meshes.length; i++) {
-			scene.meshes[0].dispose();
-		}
+		scene.meshes = [];
 		console.log("uploadMode")
 
 	}
