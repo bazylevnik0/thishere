@@ -192,6 +192,7 @@ function readFiles() {
 	// this obj
 		   //?
 
+    document.getElementById('files').files.value = ""
     files = document.getElementById('files').files;
     console.log(files)
 
@@ -207,7 +208,7 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
-		for (let i = 0; i < scene.meshes.length; i ++) {
+		for (let i = 0; i < scene.meshes.length; i++) {
 			scene.meshes[0].dispose();
 		}
 		uploadMode();
