@@ -131,7 +131,7 @@
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
    <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files" webkitdirectory multiple onchange="readFiles()">
+   <input type="file" id="files" name="files" onchange="readFiles()" webkitdirectory multiple>
  </div>
  <div>
    <button>Submit</button>
