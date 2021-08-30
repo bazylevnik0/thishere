@@ -209,6 +209,10 @@ function readFiles() {
 	let return_button = document.getElementById('return')
 	function returnClick() {
 		document.getElementById('files').value = ""
+		for (let i = 0; i < scene.meshes.length; i ++) {
+			scene.meshes[i].geometry.dispose();
+			scene.meshes[i].material.dispose();
+		}
 		uploadMode();
 	}
 </script>
