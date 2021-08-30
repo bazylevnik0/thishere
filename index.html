@@ -104,6 +104,7 @@
 //keepAssets.cameras.push(camera);
 //keepAssets.lights.push(light);
 
+funcrion scene_prepare() {
 			 scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 	 camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
@@ -118,7 +119,7 @@
 	 keepAssets = new BABYLON.KeepAssets();
 keepAssets.cameras.push(camera);
 keepAssets.lights.push(light);
-
+}
 
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
@@ -228,6 +229,7 @@ function readFiles() {
 			scene.meshes[0].dispose();
 		}
 		scene.dispose()
+		scene_prepare();
 		console.log("uploadMode")
 
 	}
