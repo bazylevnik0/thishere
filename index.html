@@ -162,7 +162,6 @@ function drop(ev) {
 //input 
 var files , reader
 function readFiles() {
-    editMode();
     console.log("readFiles")
 	// this png 
 	// this obj
@@ -176,6 +175,7 @@ function readFiles() {
    	console.log(files[i].name , files[i].webkitRelativePath)
     }
   
+    editMode();
     loadFiles();
 }
 </script>
@@ -183,7 +183,7 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
-	
+		scene.meshes = scene.meshes.constructor();
 		uploadMode();
 	}
 </script>
@@ -198,8 +198,6 @@ function readFiles() {
 	function uploadMode() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
-		
-		scene.meshes = scene.meshes.constructor();
 		console.log("uploadMode")
 
 	}
