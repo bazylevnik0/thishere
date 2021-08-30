@@ -115,7 +115,7 @@
 	function load_files () {
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
-		BABYLON.SceneLoader.ImportMeshAsync("", files_url, files_names[1]).then((result) => {
+		BABYLON.SceneLoader.ImportMeshAsync("", files_url, files_names[1]+'.obj').then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
