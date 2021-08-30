@@ -121,6 +121,7 @@ keepAssets.lights.push(light);
         window.addEventListener("resize", function () {
                 engine.resize();
         });
+	uploadMode();
 
 
 	//upload
@@ -203,7 +204,6 @@ function readFiles() {
 </script>
    </body>
 <script>
-	uploadMode();
 	function editMode() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
