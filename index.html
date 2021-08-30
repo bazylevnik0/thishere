@@ -87,6 +87,9 @@
         const canvas = document.getElementById("renderCanvas"); // Get the canvas element
         const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
+	scene_prepare();
+	function scene_prepare () {
+
         // Add your code here matching the playground format
 	var scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
@@ -112,7 +115,7 @@
 	var keepAssets = new BABYLON.KeepAssets();
 keepAssets.cameras.push(camera);
 keepAssets.lights.push(light);
-
+}
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
                 scene.render();
@@ -217,6 +220,8 @@ function readFiles() {
 	
 		console.log("uploadMode")
 container.moveAllFromScene(keepAssets);
+	scene_prepare();
+
 	}
 </script>
 </html>
