@@ -222,6 +222,10 @@ function readFiles() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
 		forward_button.style.zIndex=8
+
+		   
+		    BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
+
 		console.log("uploadMode")
 
 	}
@@ -235,15 +239,17 @@ var leftJoystick = new BABYLON.VirtualJoystick(false);
         if(leftJoystick.pressed){
             moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
             moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-           camera.rotation.x+=moveX
-           camera.rotation.z+=moveZ
-            
+          for (let i = 0; i < meshes.length; i++) {
+	    scene.meshes[i].rotation.x+=moveX
+            scene.meshes[i].rotation.z+=moveZ
+	 }            
         }
         if(rightJoystick.pressed){
             moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
             moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-           camera.position.x+=moveXX
-           camera.position.z+=moveZZ
+         for (let j = 0; j < meshes.length; j++) {
+	   scene.meshes[j].position.x+=moveXX
+           scene.meshes[j].position.z+=moveZZ
          }
     })
 
