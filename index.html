@@ -108,22 +108,7 @@
 	// Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
             	    // Game/Render loop
-    scene.onBeforeRenderObservable.add(()=>{
-        if(leftJoystick.pressed){
-            moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-           camera.rotation.x+=moveX
-           camera.rotation.z+=moveZ
-            
-        }
-        if(rightJoystick.pressed){
-            moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-           camera.position.x+=moveXX
-           camera.position.z+=moveZZ
-         }
-    })
-	    scene.render();
+   	    scene.render();
 	
         });
 
@@ -227,6 +212,9 @@ function readFiles() {
 		upload_form.style.zIndex=0
 		return_button.style.zIndex=8
 		forward_button.style.zIndex=8
+
+		    BABYLON.VirtualJoystick.Canvas.style.zIndex = "8";
+
 		console.log("editMode")
 	}
 
@@ -240,9 +228,24 @@ function readFiles() {
 
 var leftJoystick = new BABYLON.VirtualJoystick(false);
     var rightJoystick = new BABYLON.VirtualJoystick(true);
-    BABYLON.VirtualJoystick.Canvas.style.zIndex = "8";
+    BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
   var movespeed = 5
   
+ scene.onBeforeRenderObservable.add(()=>{
+        if(leftJoystick.pressed){
+            moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+           camera.rotation.x+=moveX
+           camera.rotation.z+=moveZ
+            
+        }
+        if(rightJoystick.pressed){
+            moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+           camera.position.x+=moveXX
+           camera.position.z+=moveZZ
+         }
+    })
 
 
 </script>
