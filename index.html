@@ -140,7 +140,7 @@ keepAssets.lights.push(light);
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		
-		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , "obj.obj").then((result) => {
+		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , file[0].name).then((result) => {
     		result.meshes[1].scaling.x = 0.25;
     		result.meshes[1].scaling.y = 0.25;
     		result.meshes[1].scaling.z = 0.25;
