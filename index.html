@@ -96,7 +96,7 @@
 
 	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    
+    	var scene_back = scene.clone()
 	console.log(scene)
 	//var container = new BABYLON.AssetContainer(scene);
 	//console.log(container)
@@ -105,6 +105,8 @@
 //keepAssets.lights.push(light);
 
 function scene_prepare() {
+	scene = scene_back;
+/*
 			 scene = new BABYLON.Scene(engine);
        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 	 camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
@@ -119,6 +121,7 @@ function scene_prepare() {
 	 //keepAssets = new BABYLON.KeepAssets();
 //keepAssets.cameras.push(camera);
 //keepAssets.lights.push(light);
+*/
 }
 
 	// Register a render loop to repeatedly render the scene
@@ -225,11 +228,12 @@ function readFiles() {
 		upload_form.style.zIndex=8
 		return_button.style.zIndex=0
 		
-		for (let i = 0; i < scene.meshes.length; i++) {
+		for (let i = 0; i <= scene.meshes.length; i++) {
 			scene.meshes[0].dispose();
 		}
+		
 		//scene.dispose()
-		//scene_prepare();
+		scene_prepare();
 		console.log("uploadMode")
 
 	}
