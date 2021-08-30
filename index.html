@@ -172,7 +172,7 @@ function readFiles(event) {
 	// this obj
 		   //?
 
-    files = document.getElementById('files').files;
+    files = event.target.files;
     console.log(files)
     let temp
     for(let i = 0; i < files.length; i++){
