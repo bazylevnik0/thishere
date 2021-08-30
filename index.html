@@ -229,7 +229,7 @@ function readFiles() {
 			for (let i = 0; i < ui_classes.length; i++) {
 				ui_classes[i].style.opacity = 1;
 			} 
-		}, 750);
+		}, 1500);
 		 
 	}
 </script>
@@ -260,12 +260,12 @@ size = document.getElementById('size');
 let size_value
 function sizeChange() {
 	console.log("sizeChange")
-	
+		//need dynamic k 
           size_value = size.value;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].scaling.x =size_value*0.1
-            scene.meshes[i].scaling.y =size_value*0.1
-            scene.meshes[i].scaling.z =size_value*0.1
+	    scene.meshes[i].scaling.x =size_value*0.05
+            scene.meshes[i].scaling.y =size_value*0.05
+            scene.meshes[i].scaling.z =size_value*0.05
        
 	 }            
 }
