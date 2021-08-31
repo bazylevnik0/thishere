@@ -103,7 +103,6 @@
   .then(gotDevices)
   .catch(console.log("catch"));
 
-								//fix console.logerror if 2 cameras
 var cameras_array = []
 function gotDevices(deviceInfos) {
   for (var i = 0; i !== deviceInfos.length; ++i) {
@@ -152,19 +151,19 @@ function gotDevices(deviceInfos) {
 	function loadFiles () {
 		console.log("loadFiles")
 	
-		var assetsManager = new BABYLON.AssetsManager(scene);
-		var meshTask = assetsManager.addMeshTask("skull task",files[0].webkitRelativePath, files[0].name, "skull.babylon");
-
 	//important! we must check real size and correct this 
-
-	meshTask.onSuccess = function (task) {
-	for (let i = 0; i < result.meshes.length; i++) {
-		    task.loadedMeshes[0].scaling.x = 0.25;
-    		    task.loadedMeshes[0].scaling.y = 0.25;
-    		    task.loadedMeshes[0].scaling.z = 0.25;
+		//maybe we must correct link obj to mtl
+		//if obj not zero element we need find obj!
+		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
+    		console.log(result.meshes)
+		for (let i = 0; i < result.meshes.length; i++) {
+		result.meshes[i].scaling.x = 0.25;
+    		result.meshes[i].scaling.y = 0.25;
+    		result.meshes[i].scaling.z = 0.25;
 		}
-    	
-	}	
+    		var myMesh1 = scene.getMeshByName("myMesh_1");
+		console.log(result)
+	})
 	
 	}
     </script>
@@ -172,7 +171,7 @@ function gotDevices(deviceInfos) {
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
    <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files" multiple onchange="readFiles()"  webkitrelativepath="true">
+   <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true">
  </div>
  <div>
    <button>Submit</button>
@@ -186,7 +185,6 @@ function gotDevices(deviceInfos) {
 
 <script>
 	 upload_form = document.getElementById('upload');
-
    
 //drag and drop
 function allowDrop(ev) {
@@ -205,13 +203,13 @@ function drop(ev) {
 
 //input 
 var files , reader
-files = document.getElementById('files').files;
 function readFiles() {
     console.log("readFiles")
 	// this png 
 	// this obj
 		   //?
 
+    files = document.getElementById('files').files;
     console.log(files)
 
     let temp;
@@ -347,4 +345,3 @@ var leftJoystick = new BABYLON.VirtualJoystick(false);
 
 </script>
 </html>
-
