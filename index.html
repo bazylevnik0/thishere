@@ -152,7 +152,7 @@
 	    console.log("loadFiles")
  
             BABYLON.SceneLoader.ImportMeshAsync("", path, name).then((result) => {
-															//must be dynamic
+		console.log(name)												//must be dynamic
                 switch (name) {
                     case 'tree.obj':
                         k_size = 0.00025;
