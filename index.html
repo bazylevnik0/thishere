@@ -235,6 +235,7 @@ function drop(ev) {
 //input 
 var files , reader
 function readFiles() {
+    activareAR()
     console.log("readFiles")
 	// this png 
 	// this obj
@@ -250,6 +251,18 @@ function readFiles() {
   
     editMode();
     loadFiles();
+}
+
+function activateAR() {
+	// Initialize a WebXR session using "immersive-ar".
+const session = navigator.xr.requestSession("immersive-ar");
+session.updateRenderState({
+  baseLayer: new XRWebGLLayer(session, gl)
+});
+
+// A 'local' reference space has a native origin that is located
+// near the viewer's position at the time the session was created.
+const referenceSpace = session.requestReferenceSpace('local');
 }
 </script>
 <button id="return" class="ui" onclick="returnClick()">return</button>
@@ -410,8 +423,8 @@ var leftJoystick = new BABYLON.VirtualJoystick(false);
             moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
             moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].rotation.x-=moveXl
-            scene.meshes[i].rotation.y-=moveYl
+	    scene.meshes[i].rotation.x+=moveXl
+            scene.meshes[i].rotation.y+=moveYl
      	 }            
         }
         if(rightJoystick.pressed){
@@ -423,6 +436,9 @@ var leftJoystick = new BABYLON.VirtualJoystick(false);
          }
 	}
     })
+
+//ar
+const gl = canvas.getContext("webgl", {xrCompatible: true});
 
 </script>
 </html>
