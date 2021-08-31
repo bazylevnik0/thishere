@@ -208,12 +208,13 @@ var files , reader
 files = document.getElementById('files').files;
 var interval_loading_msg
 function showMessageLoading(){
-	 interval_loading_msg.setInterval( function () {
+	 interval_loading_msg = setInterval( function () {
 		console.log("loading")
 		},100);
 }
 
 function readFiles() {
+    clearInterval(interval_loading_msg);
     console.log("readFiles")
 	// this png 
 	// this obj
