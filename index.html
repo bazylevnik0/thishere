@@ -41,10 +41,16 @@
         }
 
         #upload {
-            position: absolute;
-            height: 500px;
-            top: 500px;
-            z-index: 8;
+
+	position: absolute;
+    width: 50%;
+    height: 50%;
+    bottom: 20%;
+    left: 25%;
+    right: 25%;
+    margin: auto;
+    text-align: center;
+    z-index: 8;
         }
 
         #photo {
@@ -135,8 +141,8 @@
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 	
-	var sample_tree = [ "./" , "tree.obj"] , simple_tree_check = false
-	var sample_book = [ "./" , "book.obj"] , simple_book_check = false
+	var sample_tree = [ "./" , "tree.obj"] , sample_tree_check = false
+	var sample_book = [ "./" , "book.obj"] , sample_book_check = false
 
         engine.runRenderLoop(function() {
             scene.render();
