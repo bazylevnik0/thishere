@@ -139,9 +139,7 @@ function gotDevices(deviceInfos) {
         const canvas = document.getElementById("renderCanvas"); // Get the canvas element
         const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
-	//ar
-	const gl = canvas.getContext("webgl", {xrCompatible: true});
-        
+	
 	// Add your code here matching the playground format
 
 	var scene = new BABYLON.Scene(engine);
@@ -171,8 +169,7 @@ function gotDevices(deviceInfos) {
 	var k_size;
 	function loadFiles () {
 		console.log("loadFiles")
-		 activateAR()
-  
+	
 	//important! we must check real size and correct this 
 			// tree  k_size = 0.00025;
 			// book  k_size = 0.0125;
@@ -205,12 +202,6 @@ function gotDevices(deviceInfos) {
 	}
 
 	
-function activateAR() {
-	// Initialize a WebXR session using "immersive-ar".
-const session = navigator.xr.requestSession("immersive-ar");
-session.updateRenderState({
-  baseLayer: new XRWebGLLayer(session, gl)
-});
 
 // A 'local' reference space has a native origin that is located
 // near the viewer's position at the time the session was created.
