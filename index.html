@@ -139,6 +139,8 @@ function gotDevices(deviceInfos) {
         const canvas = document.getElementById("renderCanvas"); // Get the canvas element
         const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
+	//ar
+	const gl = canvas.getContext("webgl", {xrCompatible: true});
         
 	// Add your code here matching the playground format
 
@@ -442,8 +444,6 @@ var leftJoystick = new BABYLON.VirtualJoystick(false);
 	}
     })
 
-//ar
-const gl = canvas.getContext("webgl", {xrCompatible: true});
 
 </script>
 </html>
