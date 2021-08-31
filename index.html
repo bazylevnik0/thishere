@@ -148,6 +148,7 @@ function gotDevices(deviceInfos) {
 
 
 	//upload
+	var k_size = 1;
 	function loadFiles () {
 		console.log("loadFiles")
 	
@@ -158,12 +159,12 @@ function gotDevices(deviceInfos) {
 							//and use face in this side,,, maybe? 
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		console.log(result.meshes)
-		/*
+		
 		for (let i = 0; i < result.meshes.length; i++) {
-		result.meshes[i].scaling.x = 0.25;
-    		result.meshes[i].scaling.y = 0.25;
-    		result.meshes[i].scaling.z = 0.25;
-		}
+		result.meshes[i].scaling.x = 50*k_size;
+    		result.meshes[i].scaling.y = 50*k_size;
+    		result.meshes[i].scaling.z = 50*k_size;;
+		
 		*/
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
@@ -283,9 +284,9 @@ function sizeChange() {
 		//need dynamic k 
           size_value = size.value;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].scaling.x =size_value*0.05
-            scene.meshes[i].scaling.y =size_value*0.05
-            scene.meshes[i].scaling.z =size_value*0.05
+	    scene.meshes[i].scaling.x =size_value*k_size
+            scene.meshes[i].scaling.y =size_value*k_size
+            scene.meshes[i].scaling.z =size_value*k_size
        
 	 }            
 }
