@@ -149,10 +149,10 @@
 
         //upload
         var k_size;
-        function loadFiles() {
+        function loadFiles(path,name) {
 	    console.log("loadFiles")
  
-            BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath, files[0].name).then((result) => {
+            BABYLON.SceneLoader.ImportMeshAsync("", path, name).then((result) => {
 															//must be dynamic
                 switch (files[0].name) {
                     case 'tree.obj':
