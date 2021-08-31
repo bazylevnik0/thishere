@@ -52,7 +52,7 @@
             height: 100px;
             position: absolute;
             bottom: 150px;
-            left: 50%;
+            left: 45%;
         }
 
         #return {
@@ -60,7 +60,7 @@
             height: 100px;
             position: absolute;
             top: 150px;
-            left: 40%;
+            left: 45%;
         }
 
         #level {
@@ -119,7 +119,6 @@
                     video: true
                 }).then(handleSuccess)
             }
-	}
     </script>
     <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
     <script>
@@ -148,7 +147,7 @@
         var k_size;
 
         function loadFiles() {
-
+	    console.log("loadFiles")
             BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath, files[0].name).then((result) => {
 															//must be dynamic
                 switch (files[0].name) {
@@ -189,11 +188,11 @@
     </form>
     <script>
         var files, reader
-
         function readFiles() {
+	    console.log("readFiles")
             files = document.getElementById('files').files;
-    
-	    let temp;
+ 
+            let temp;
             for (let i = 0; i < files.length; i++) {
                 console.log(files[i].name, files[i].webkitRelativePath)
             }
@@ -214,31 +213,6 @@
             uploadMode();
         }
     </script>
-    <button id="reset" class="ui" onclick="resetClick()">reset</button>
-    <script>
-        let reset_button = document.getElementById('reset')
-
-        function resetClick() {
-            console.log("resetClick")
-
-            for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].position.x = 0;
-                scene.meshes[i].position.y = 0;
-                scene.meshes[i].position.z = 0;
-
-                scene.meshes[i].scaling.x = 1;
-                scene.meshes[i].scaling.y = 1;
-                scene.meshes[i].scaling.z = 1;
-
-                scene.meshes[i].rotation.x = 0;
-                scene.meshes[i].rotation.y = 0;
-                scene.meshes[i].rotation.z = 0;
-
-                size.value = 50;
-                level.value = 0;
-            }
-        }
-    </script>
     <button id="photo" class="ui" onclick="photoClick()">photo</button>
     <script>
         let ui_classes = document.getElementsByClassName('ui');
@@ -256,30 +230,6 @@
                     ui_classes[i].style.opacity = 1;
                 }
             }, 1500);
-
-        }
-    </script>
-    <button id="fix" class="ui" onclick="fixClick()">fix</button>
-    <script>
-        let fix_check = false;
-        let fix_button = document.getElementById('fix')
-
-        function fixClick() {
-            console.log("fixClick", fix_check);
-
-            switch (fix_check) {
-                case false: {
-
-                    fix_check = true;
-                }
-                break;
-            case true: {
-
-
-                fix_check = false;
-            }
-            break;
-            }
 
         }
     </script>
@@ -311,7 +261,6 @@
 
         function sizeChange() {
             console.log("sizeChange")
-            //need dynamic k 
             size_value = size.value;
             for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].scaling.x = size_value * k_size
@@ -368,7 +317,7 @@
             moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
             for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
-                scene.meshes[i].rotation.y += moveYl
+                scene.meshes[i].rotation.z += moveYl
             }
         }
         if (rightJoystick.pressed) {
