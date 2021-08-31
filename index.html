@@ -108,7 +108,7 @@ function gotDevices(deviceInfos) {
   for (var i = 0; i !== deviceInfos.length; ++i) {
     var deviceInfo = deviceInfos[i];
     if (deviceInfo.kind === 'videoinput') {
-      console.log(deviceInfo.label.toString().indexOf('back'))
+				      //heh in my devices it work
       if ( deviceInfo.label.toString().indexOf('back') !== -1) navigator.mediaDevices.getUserMedia({ audio: false,  video: { deviceId: deviceInfo.deviceId }    }).then(handleSuccess) 
 
     }
@@ -320,23 +320,24 @@ var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI"
 var leftJoystick = new BABYLON.VirtualJoystick(false);
     var rightJoystick = new BABYLON.VirtualJoystick(true);
     BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
-  var movespeed = 5
+ 
+ var movespeed = 2.5
   
  scene.onBeforeRenderObservable.add(()=>{
         if(leftJoystick.pressed){
-            moveX = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZ = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+            moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].rotation.x+=moveX
-            scene.meshes[i].rotation.z+=moveZ
-	 }            
+	    scene.meshes[i].rotation.x+=moveXl
+            scene.meshes[i].rotation.y+=moveZl
+     	 }            
         }
         if(rightJoystick.pressed){
-            moveXX = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZZ = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
+            moveXr = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
+            moveZr = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
          for (let j = 0; j < scene.meshes.length; j++) {
-	   scene.meshes[j].position.x+=moveXX
-           scene.meshes[j].position.z+=moveZZ
+	   scene.meshes[j].position.x+=moveXr
+           scene.meshes[j].position.z+=moveZr
          }
 	}
     })
