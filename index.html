@@ -438,5 +438,10 @@ Promise.all([navigator.permissions.query({ name: "accelerometer" }),
          }
    });
 
+sensor.addEventListener('reading', () => {
+         console.log(scene.meshes[0].position.y,sensor.quaternion[3])
+ });
+
+
 </script>
 </html>
