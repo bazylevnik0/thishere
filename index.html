@@ -135,11 +135,11 @@ function gotDevices(deviceInfos) {
 
     <script>
 
-	/* OLD
+	
         const canvas = document.getElementById("renderCanvas"); // Get the canvas element
         const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
-	
+	/*
 	// Add your code here matching the playground format
 
 	var scene = new BABYLON.Scene(engine);
@@ -151,7 +151,7 @@ function gotDevices(deviceInfos) {
 
 */
 
-	 activateAR()
+
  const xrPolyfillPromise = new Promise((resolve) => {
     if (navigator.xr) {
         return resolve();
