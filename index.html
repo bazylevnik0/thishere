@@ -153,6 +153,18 @@ function gotDevices(deviceInfos) {
 		console.log("loadFiles")
 	
 	//important! we must check real size and correct this 
+		var assetsManager = new BABYLON.AssetsManager(scene);
+		var meshTask = assetsManager.addMeshTask("skull task",files[0].webkitRelativePath, files[0].name, "skull.babylon");
+
+	meshTask.onSuccess = function (task) {
+	for (let i = 0; i < result.meshes.length; i++) {
+		    task.loadedMeshes[0].scaling.x = 0.25;
+    		    task.loadedMeshes[0].scaling.y = 0.25;
+    		    task.loadedMeshes[0].scaling.z = 0.25;
+		}
+    	
+	}	
+
 		//maybe we must correct link obj to mtl
 		//if obj not zero element we need find obj!
 
