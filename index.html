@@ -198,10 +198,11 @@
             files = document.getElementById('files').files;
  	
 	    editMode();
-	    if (files.length == 0) {
-		if(sample_tree_check) loadFiles(sample_tree[0], sample_tree[1]);
-		if(sample_book_check) loadFiles(sample_book[0], sample_book[1]);
-	    } else loadFiles(files[0].name, files[0].webkitRelativePath);
+	   if(sample_tree_check) {
+		loadFiles(sample_tree[0], sample_tree[1]);
+	   } else if(sample_book_check) {
+		loadFiles(sample_book[0], sample_book[1]);
+	     else loadFiles(files[0].name, files[0].webkitRelativePath);
        
          }
     </script>
