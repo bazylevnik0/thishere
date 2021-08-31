@@ -160,7 +160,10 @@ function gotDevices(deviceInfos) {
         window.addEventListener("resize", function () {
                 engine.resize();
         });
+	
 
+	  activateAR()
+  
 
 	//upload
 	//mmm check
@@ -196,6 +199,7 @@ function gotDevices(deviceInfos) {
 		}
 		})
 	
+		
 	}
     </script>
 
@@ -235,7 +239,6 @@ function drop(ev) {
 //input 
 var files , reader
 function readFiles() {
-    activateAR()
     console.log("readFiles")
 	// this png 
 	// this obj
