@@ -154,6 +154,18 @@ function gotDevices(deviceInfos) {
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		//if obj not zero element we need find obj!
+
+		BABYLON.SceneLoader.AppendAsync(files[0].webkitRelativePath", files[0].name, scene).then(function (scene) {
+   			 // do something with the scene
+				for (let i = 0; i < scene.meshes.length; i++) {
+					scene.meshes[i].scaling.x = 0.25;
+    					scene.meshes[i].scaling.y = 0.25;
+    					scene.meshes[i].scaling.z = 0.25;
+				}
+    	
+		});
+
+		/*
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		console.log(result.meshes)
 		for (let i = 0; i < result.meshes.length; i++) {
@@ -163,6 +175,7 @@ function gotDevices(deviceInfos) {
 		}
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
+		*/
 	})
 	
 	}
