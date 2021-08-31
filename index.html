@@ -148,13 +148,13 @@ function gotDevices(deviceInfos) {
 
 
 	//upload
-	var k_size = 1;
+	var k_size;
 	function loadFiles () {
 		console.log("loadFiles")
 
 	//important! we must check real size and correct this 
-			// tree k_size = 0.00025;
-			// book k_size = 0.0125;
+			// tree  k_size = 0.00025;
+			// book  k_size = 0.0125;
 
 
 		//maybe we must correct link obj to mtl
@@ -164,7 +164,13 @@ function gotDevices(deviceInfos) {
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		console.log(result.meshes)
 		
+		switch(files[0].name) {
+			case 'tree.obj' : k_size = 0.00025; break;
+			case 'book.obj' : k_size = 0.0125;  break;
+			default : k_size = 1;
+		}
 		for (let i = 0; i < result.meshes.length; i++) {
+		
 		result.meshes[i].scaling.x = 50*k_size;
     		result.meshes[i].scaling.y = 50*k_size;
     		result.meshes[i].scaling.z = 50*k_size;;
