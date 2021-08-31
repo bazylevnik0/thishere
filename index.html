@@ -133,6 +133,9 @@
         camera.attachControl(canvas, true);
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+	
+	var sample_tree = [ "./" , "tree.obj"] , simple_tree_check = false
+	var sample_book = [ "./" , "book.obj"] , simple_book_check = false
 
         engine.runRenderLoop(function() {
             scene.render();
@@ -145,9 +148,9 @@
 
         //upload
         var k_size;
-
         function loadFiles() {
 	    console.log("loadFiles")
+ 
             BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath, files[0].name).then((result) => {
 															//must be dynamic
                 switch (files[0].name) {
@@ -191,15 +194,14 @@
         function readFiles() {
 	    console.log("readFiles")
             files = document.getElementById('files').files;
- 
-            let temp;
-            for (let i = 0; i < files.length; i++) {
-                console.log(files[i].name, files[i].webkitRelativePath)
-            }
-
-            editMode();
-            loadFiles();
-        }
+ 	
+	    editMode();
+	    if (files.length == 0) {
+		if(sample_tree_check) loadFiles(sample_tree[0], sample_tree[1]);
+		if(sample_book_check) loadFiles(sample_book[0], sample_book[1]);
+	    } else loadFiles(files[0].name, files[0].webkitRelativePath);
+       
+         }
     </script>
     <button id="return" class="ui" onclick="returnClick()">return</button>
     <script>
