@@ -103,6 +103,7 @@
   .then(gotDevices)
   .catch(console.log("catch"));
 
+								//fix console.logerror if 2 cameras
 var cameras_array = []
 function gotDevices(deviceInfos) {
   for (var i = 0; i !== deviceInfos.length; ++i) {
@@ -155,7 +156,7 @@ function gotDevices(deviceInfos) {
 		//maybe we must correct link obj to mtl
 		//if obj not zero element we need find obj!
 
-		BABYLON.SceneLoader.AppendAsync(files[0].webkitRelativePath", files[0].name, scene).then(function (scene) {
+		BABYLON.SceneLoader.AppendAsync(files[0].webkitRelativePath", files[0].name, scene).then(function (scene)) {
    			 // do something with the scene
 				for (let i = 0; i < scene.meshes.length; i++) {
 					scene.meshes[i].scaling.x = 0.25;
