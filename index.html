@@ -148,9 +148,9 @@ function gotDevices(deviceInfos) {
 
 
 	//upload
+	var k_size = 1;
 	function loadFiles () {
 		console.log("loadFiles")
-			var k_size = 1;
 
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
@@ -165,7 +165,6 @@ function gotDevices(deviceInfos) {
     		result.meshes[i].scaling.y = 50*k_size;
     		result.meshes[i].scaling.z = 50*k_size;;
 		
-		*/
     		var myMesh1 = scene.getMeshByName("myMesh_1");
 		console.log(result)
 	})
