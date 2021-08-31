@@ -172,7 +172,7 @@ function gotDevices(deviceInfos) {
 <form id="upload" method="post" enctype="multipart/form-data">
  <div>
    <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files"  onload="readFiles" multiple onchange="showMessageLoading()" webkitrelativepath="true">
+   <input type="file" id="files" name="files" multiple onchange="showMessageLoading()" onstorage="readfiles()"  webkitrelativepath="true">
  </div>
  <div>
    <button>Submit</button>
