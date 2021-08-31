@@ -154,6 +154,8 @@ function gotDevices(deviceInfos) {
 	//important! we must check real size and correct this 
 		//maybe we must correct link obj to mtl
 		//if obj not zero element we need find obj!
+							//try to move script on server with upload
+							//and use face in this side,,, maybe? 
 		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
     		console.log(result.meshes)
 		for (let i = 0; i < result.meshes.length; i++) {
