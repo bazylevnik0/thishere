@@ -328,8 +328,9 @@ var leftJoystick = new BABYLON.VirtualJoystick(false);
             moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
             moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
           for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].rotation.x+=moveXl
-            scene.meshes[i].rotation.y+=moveYl
+	    scene.meshes[i].rotation.x-=moveXl
+            scene.meshes[i].rotation.y-=moveYl
+     	    scene.meshes[i].rotation.z-=(moveXl+moveYl)/2
      	 }            
         }
         if(rightJoystick.pressed){
