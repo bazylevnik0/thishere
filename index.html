@@ -119,6 +119,7 @@
                     video: true
                 }).then(handleSuccess)
             }
+	}
     </script>
     <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
     <script>
@@ -186,43 +187,13 @@
             <button>Submit</button>
         </div>
     </form>
-
-
-    <div id="div_drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-    <img id="drop" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
-
     <script>
-        upload_form = document.getElementById('upload');
-
-        //drag and drop
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
-        }
-
-        //input 
         var files, reader
 
         function readFiles() {
-            console.log("readFiles")
-            // this png 
-            // this obj
-            //?
-
             files = document.getElementById('files').files;
-            console.log(files)
-
-            let temp;
+    
+	    let temp;
             for (let i = 0; i < files.length; i++) {
                 console.log(files[i].name, files[i].webkitRelativePath)
             }
