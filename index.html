@@ -201,6 +201,19 @@ function gotDevices(deviceInfos) {
 	
 		
 	}
+
+	
+function activateAR() {
+	// Initialize a WebXR session using "immersive-ar".
+const session = navigator.xr.requestSession("immersive-ar");
+session.updateRenderState({
+  baseLayer: new XRWebGLLayer(session, gl)
+});
+
+// A 'local' reference space has a native origin that is located
+// near the viewer's position at the time the session was created.
+const referenceSpace = session.requestReferenceSpace('local');
+}
     </script>
 
 <form id="upload" method="post" enctype="multipart/form-data">
@@ -256,17 +269,6 @@ function readFiles() {
     loadFiles();
 }
 
-function activateAR() {
-	// Initialize a WebXR session using "immersive-ar".
-const session = navigator.xr.requestSession("immersive-ar");
-session.updateRenderState({
-  baseLayer: new XRWebGLLayer(session, gl)
-});
-
-// A 'local' reference space has a native origin that is located
-// near the viewer's position at the time the session was created.
-const referenceSpace = session.requestReferenceSpace('local');
-}
 </script>
 <button id="return" class="ui" onclick="returnClick()">return</button>
 <script>
