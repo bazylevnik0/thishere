@@ -150,18 +150,17 @@
         var k_size;
         function loadFiles(path,name) {
 	    console.log("loadFiles")
- 	    let _name = name
-            BABYLON.SceneLoader.ImportMeshAsync("", path, name).then((result) => {
-		console.log(+name)												//must be dynamic
-                switch (_name) {
-                    case 'tree.obj':
+ 	    BABYLON.SceneLoader.ImportMeshAsync("", path, name).then((result) => {
+														//must be dynamic
+                switch (name) {
+                    case 'tree.obj': {
                         k_size = 0.00025;
-                        break;
-                    case 'book.obj':
+		    } break;
+                    case 'book.obj': {
                         k_size = 0.0125;
-                        break;
-                    default:
-                        k_size = 1;
+		    } break;
+			
+			default: k_size = 1;
                 }
                 for (let i = 0; i < result.meshes.length; i++) {
 
