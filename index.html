@@ -1,6 +1,8 @@
 <html>
+
 <head>
 </head>
+
 <body>
 </body>
 </body>
@@ -8,444 +10,436 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>thishere</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>thishere</title>
 
-        <style>
-            html, body {
-                overflow: hidden;
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-            #renderCanvas {
-                width: 100%;
-                height: 100%;
-                touch-action: none;
-            }
-            #player {
-              position: absolute;
-              z-index: 1;
-          }
-           #rendercanvas {
-              position: absolute;
-              z-index: 2;
-          }
-	#upload {
-    position: absolute;
-    height: 500px;
-    top: 500px;
-    z-index: 8;
-}
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
 
-	#div_drop {
-	position: absolute;
-	z-index: 3;
-}
-	#drop {
-	position: absolute;
-	z-index: 3;
-}
+        #player {
+            position: absolute;
+            z-index: 1;
+        }
 
+        #rendercanvas {
+            position: absolute;
+            z-index: 2;
+        }
 
-#photo {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-}
-#fix {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    bottom: 150px;
-    left: 40%;
-}
-#return {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 150px;
-    left: 40%;
-}
-#reset {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 150px;
-    left: 50%;
-}
+        #upload {
+            position: absolute;
+            height: 500px;
+            top: 500px;
+            z-index: 8;
+        }
 
-#level{
-    position: absolute;
-    left: 40%;
-    top: 50%;
-    transform: rotate(270deg);
-    width: 100%;
-}
-#size{
-    position: absolute;
-    right: 40%;
-    top: 50%;
-    transform: rotate(270deg);
-    width: 100%;
-}
-        </style>
+        #photo {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+        }
 
-        <script src="https://cdn.babylonjs.com/babylon.js"></script>
-        <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-	 <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
-	<script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
-    </head>
+        #return {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 150px;
+            left: 40%;
+        }
 
-   <body>
-<video id="player" controls width="100%" height="100%" autoplay="true"></video>
-<script>
-													//FADEIN FADEOUT animation for UI 
-  var player = document.getElementById('player');
+        #level {
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            transform: rotate(270deg);
+            width: 100%;
+        }
 
-  var handleSuccess = function(stream) {
-    player.srcObject = stream;
-  };
+        #size {
+            position: absolute;
+            right: 40%;
+            top: 50%;
+            transform: rotate(270deg);
+            width: 100%;
+        }
+    </style>
 
-  //navigator.mediaDevices.getUserMedia({ audio: false, video: true }).then(handleSuccess)
- navigator.mediaDevices.enumerateDevices()
-  .then(gotDevices)
-  .catch(console.log("catch"));
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
 
-var cameras_array = []
-function gotDevices(deviceInfos) {
-  for (var i = 0; i !== deviceInfos.length; ++i) {
-    var deviceInfo = deviceInfos[i];
-    if (deviceInfo.kind === 'videoinput') {
-				      //heh in my devices it work
-      if ( deviceInfo.label.toString().indexOf('back') !== -1) navigator.mediaDevices.getUserMedia({ audio: false,  video: { deviceId: deviceInfo.deviceId }    }).then(handleSuccess) 
+</head>
 
-    }
-  }
-  navigator.mediaDevices.getUserMedia({ audio: false, video: true }).then(handleSuccess)
-}
-</script>
-
-    <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
-
+<body>
+    <video id="player" controls width="100%" height="100%" autoplay="true"></video>
     <script>
+        //FADEIN FADEOUT animation for UI 
+        var player = document.getElementById('player');
 
-	
+        var handleSuccess = function(stream) {
+            player.srcObject = stream;
+        };
+
+        navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(console.log("catch"));
+
+        var cameras_array = []
+
+        function gotDevices(deviceInfos) {
+            for (var i = 0; i !== deviceInfos.length; ++i) {
+                var deviceInfo = deviceInfos[i];
+                if (deviceInfo.kind === 'videoinput') {
+                    if (deviceInfo.label.toString().indexOf('back') !== -1) {
+                        navigator.mediaDevices.getUserMedia({
+                            audio: false,
+                            video: {
+                                deviceId: deviceInfo.deviceId
+                            }
+                        }).then(handleSuccess)
+                    }
+                }
+                navigator.mediaDevices.getUserMedia({
+                    audio: false,
+                    video: true
+                }).then(handleSuccess)
+            }
+    </script>
+    <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+    <script>
         const canvas = document.getElementById("renderCanvas"); // Get the canvas element
         const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
-	var scene = new BABYLON.Scene(engine);
-       scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
-	//var camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
-	//camera.attachControl(canvas, true);
-	
-var camera = new BABYLON.DeviceOrientationCamera("DevOr_camera", new BABYLON.Vector3(0, 0, 0), scene);
+        var scene = new BABYLON.Scene(engine);
+        scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+        //var camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 0, 0), scene);
+        //camera.attachControl(canvas, true);
+
+        var camera = new BABYLON.DeviceOrientationCamera("DevOr_camera", new BABYLON.Vector3(0, 0, 0), scene);
 
 
 
-    // This targets the camera to scene origin
+        // This targets the camera to scene origin
 
-    camera.setTarget(new BABYLON.Vector3(0, 0, -10));
+        camera.setTarget(new BABYLON.Vector3(0, 0, -10));
 
 
 
-    // This attaches the camera to the canvas
+        // This attaches the camera to the canvas
 
-    camera.attachControl(canvas, true);
-	
+        camera.attachControl(canvas, true);
 
-	var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-	// Register a render loop to repeatedly render the scene
-        engine.runRenderLoop(function () {
-            	    // Game/Render loop
-   	    scene.render();
-	
+        var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+
+        // Register a render loop to repeatedly render the scene
+        engine.runRenderLoop(function() {
+            // Game/Render loop
+            scene.render();
+
         });
 
         // Watch for browser/canvas resize events
-        window.addEventListener("resize", function () {
-                engine.resize();
+        window.addEventListener("resize", function() {
+            engine.resize();
         });
-	
 
 
-	
-
-	//upload
-	//mmm check
-	var k_size;
-	function loadFiles () {
-		console.log("loadFiles")
-	
-	//important! we must check real size and correct this 
-			// tree  k_size = 0.00025;
-			// book  k_size = 0.0125;
 
 
-		//maybe we must correct link obj to mtl
-		//if obj not zero element we need find obj!
-							//try to move script on server with upload
-							//and use face in this side,,, maybe? 
-		BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath , files[0].name).then((result) => {
-    		console.log(result.meshes)
-		
-		switch(files[0].name) {
-			case 'tree.obj' : k_size = 0.00025; break;
-			case 'book.obj' : k_size = 0.0125;  break;
-			default : k_size = 1;
-		}
-		for (let i = 0; i < result.meshes.length; i++) {
-		
-		result.meshes[i].scaling.x = 50*k_size;
-    		result.meshes[i].scaling.y = 50*k_size;
-    		result.meshes[i].scaling.z = 50*k_size;;
+        //upload
+        //mmm check
+        var k_size;
 
-    		result.meshes[i].position.z = -5;
-		
-    		var myMesh1 = scene.getMeshByName("myMesh_1");
-		console.log(result)
-		}
-		})
+        function loadFiles() {
+            console.log("loadFiles")
 
-		
-	}
+            //important! we must check real size and correct this 
+            // tree  k_size = 0.00025;
+            // book  k_size = 0.0125;
 
-	
 
+            //maybe we must correct link obj to mtl
+            //if obj not zero element we need find obj!
+            //try to move script on server with upload
+            //and use face in this side,,, maybe? 
+            BABYLON.SceneLoader.ImportMeshAsync("", files[0].webkitRelativePath, files[0].name).then((result) => {
+                console.log(result.meshes)
+
+                switch (files[0].name) {
+                    case 'tree.obj':
+                        k_size = 0.00025;
+                        break;
+                    case 'book.obj':
+                        k_size = 0.0125;
+                        break;
+                    default:
+                        k_size = 1;
+                }
+                for (let i = 0; i < result.meshes.length; i++) {
+
+                    result.meshes[i].scaling.x = 50 * k_size;
+                    result.meshes[i].scaling.y = 50 * k_size;
+                    result.meshes[i].scaling.z = 50 * k_size;;
+
+                    result.meshes[i].position.z = -5;
+
+                    var myMesh1 = scene.getMeshByName("myMesh_1");
+                    console.log(result)
+                }
+            })
+
+
+        }
     </script>
 
-<form id="upload" method="post" enctype="multipart/form-data">
- <div>
-   <label for="files">Choose file to upload</label>
-   <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true">
- </div>
- <div>
-   <button>Submit</button>
- </div>
-</form>
+    <form id="upload" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="files">Choose file to upload</label>
+            <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true">
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
 
 
-<div id="div_drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div_drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-<img id="drop" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
+    <img id="drop" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
 
-<script>
-	 upload_form = document.getElementById('upload');
-   
-//drag and drop
-function allowDrop(ev) {
-  ev.preventDefault();
-}
+    <script>
+        upload_form = document.getElementById('upload');
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+        //drag and drop
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
 
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
 
-//input 
-var files , reader
-function readFiles() {
-    console.log("readFiles")
-	// this png 
-	// this obj
-		   //?
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
 
-    files = document.getElementById('files').files;
-    console.log(files)
+        //input 
+        var files, reader
 
-    let temp;
-    for(let i = 0; i < files.length; i++) {
-   	console.log(files[i].name , files[i].webkitRelativePath)
-    }
-  
-    editMode();
-    loadFiles();
-}
+        function readFiles() {
+            console.log("readFiles")
+            // this png 
+            // this obj
+            //?
 
-</script>
-<button id="return" class="ui" onclick="returnClick()">return</button>
-<script>
-	let return_button = document.getElementById('return')
-	function returnClick() {
-			console.log("returnClick")
+            files = document.getElementById('files').files;
+            console.log(files)
 
-  		document.getElementById('files').value = "";
-		scene.meshes = scene.meshes.constructor();
-		uploadMode();
-	}
-</script>
-<button id="reset" class="ui" onclick="resetClick()">reset</button>
-<script>
-	let reset_button = document.getElementById('reset')
-	function resetClick() {
-		console.log("resetClick")
+            let temp;
+            for (let i = 0; i < files.length; i++) {
+                console.log(files[i].name, files[i].webkitRelativePath)
+            }
 
-		for ( let i = 0; i < scene.meshes.length; i++) {
-			scene.meshes[i].position.x = 0;		
-			scene.meshes[i].position.y = 0;		
-			scene.meshes[i].position.z = 0;
-		
-			scene.meshes[i].scaling.x = 1;		
-			scene.meshes[i].scaling.y = 1;		
-			scene.meshes[i].scaling.z = 1;
+            editMode();
+            loadFiles();
+        }
+    </script>
+    <button id="return" class="ui" onclick="returnClick()">return</button>
+    <script>
+        let return_button = document.getElementById('return')
 
-			scene.meshes[i].rotation.x = 0;		
-			scene.meshes[i].rotation.y = 0;		
-			scene.meshes[i].rotation.z = 0;
+        function returnClick() {
+            console.log("returnClick")
 
-			size.value = 50;
-			level.value = 0;
-		}
-	}
-</script>
-<button id="photo" class="ui" onclick="photoClick()">photo</button>
-<script>
+            document.getElementById('files').value = "";
+            scene.meshes = scene.meshes.constructor();
+            uploadMode();
+        }
+    </script>
+    <button id="reset" class="ui" onclick="resetClick()">reset</button>
+    <script>
+        let reset_button = document.getElementById('reset')
+
+        function resetClick() {
+            console.log("resetClick")
+
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].position.x = 0;
+                scene.meshes[i].position.y = 0;
+                scene.meshes[i].position.z = 0;
+
+                scene.meshes[i].scaling.x = 1;
+                scene.meshes[i].scaling.y = 1;
+                scene.meshes[i].scaling.z = 1;
+
+                scene.meshes[i].rotation.x = 0;
+                scene.meshes[i].rotation.y = 0;
+                scene.meshes[i].rotation.z = 0;
+
+                size.value = 50;
+                level.value = 0;
+            }
+        }
+    </script>
+    <button id="photo" class="ui" onclick="photoClick()">photo</button>
+    <script>
         let ui_classes = document.getElementsByClassName('ui');
-	let photo_button = document.getElementById('photo')
-	function photoClick() {
-		console.log("photoClick");
-		for (let i = 0; i < ui_classes.length; i++) {
-			ui_classes[i].style.opacity = 0;;
-		}
+        let photo_button = document.getElementById('photo')
 
-		setTimeout( function () {
-			
-			for (let i = 0; i < ui_classes.length; i++) {
-				ui_classes[i].style.opacity = 1;
-			} 
-		}, 1500);
-		 
-	}
-</script>
-<button id="fix" class="ui" onclick="fixClick()">fix</button>
+        function photoClick() {
+            console.log("photoClick");
+            for (let i = 0; i < ui_classes.length; i++) {
+                ui_classes[i].style.opacity = 0;;
+            }
+
+            setTimeout(function() {
+
+                for (let i = 0; i < ui_classes.length; i++) {
+                    ui_classes[i].style.opacity = 1;
+                }
+            }, 1500);
+
+        }
+    </script>
+    <button id="fix" class="ui" onclick="fixClick()">fix</button>
+    <script>
+        let fix_check = false;
+        let fix_button = document.getElementById('fix')
+
+        function fixClick() {
+            console.log("fixClick", fix_check);
+
+            switch (fix_check) {
+                case false: {
+
+                    fix_check = true;
+                }
+                break;
+            case true: {
+
+
+                fix_check = false;
+            }
+            break;
+            }
+
+        }
+    </script>
+    <div class="slidecontainer">
+        <input type="range" min="-50" max="50" value="0" class="ui" id="level" oninput="levelChange()">
+    </div>
+    <script>
+        level = document.getElementById('level');
+        let level_value;
+
+        function levelChange() {
+            console.log("levelChange")
+
+            level_value = level.value;
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].position.y = level_value * 0.2
+
+            }
+
+        }
+    </script>
+    <div class="slidecontainer">
+        <input type="range" min="0" max="100" value="50" class="ui" id="size" oninput="sizeChange()">
+    </div>
+
+    <script>
+        size = document.getElementById('size');
+        let size_value
+
+        function sizeChange() {
+            console.log("sizeChange")
+            //need dynamic k 
+            size_value = size.value;
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].scaling.x = size_value * k_size
+                scene.meshes[i].scaling.y = size_value * k_size
+                scene.meshes[i].scaling.z = size_value * k_size
+
+            }
+        }
+    </script>
+</body>
 <script>
-	let fix_check = false;
-      	let fix_button = document.getElementById('fix')
-	function fixClick() {
-		console.log("fixClick",fix_check);
-		
-		switch(fix_check) {
-			case false : {
-				
-			 fix_check = true;
-			} break;
-			case true : {
+    function editMode() {
+        upload_form.style.zIndex = 0
+        return_button.style.zIndex = 8
+        reset_button.style.zIndex = 8
+        photo_button.style.zIndex = 8
+        fix_button.style.zIndex = 8
+        level.style.zIndex = 8
+        size.style.zIndex = 8
 
-			
-			 fix_check = false;
-			} break;
-		}
-		 
-	}
-</script>
-<div class="slidecontainer">
-  <input type="range" min="-50" max="50" value="0"  class="ui" id="level" oninput="levelChange()">
-</div>
-<script>
-level = document.getElementById('level');
-let level_value;
-function levelChange() {
-	console.log("levelChange")
+        BABYLON.VirtualJoystick.Canvas.style.zIndex = "3";
 
-          level_value = level.value;
-          for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].position.y = level_value*0.2
-       	
-	 }            
+        console.log("editMode")
+    }
 
-}
-</script>
-<div class="slidecontainer">
-  <input type="range" min="0" max="100" value="50" class="ui" id="size" oninput="sizeChange()">
-</div>
+    function uploadMode() {
+        upload_form.style.zIndex = 8
+        return_button.style.zIndex = 0
+        photo_button.style.zIndex = 0
+        fix_button.style.zIndex = 0
+        reset_button.style.zIndex = 0
+        level.style.zIndex = 0
+        size.style.zIndex = 0
 
-<script>
 
-size = document.getElementById('size');
-let size_value
-function sizeChange() {
-	console.log("sizeChange")
-		//need dynamic k 
-          size_value = size.value;
-          for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].scaling.x =size_value*k_size
-            scene.meshes[i].scaling.y =size_value*k_size
-            scene.meshes[i].scaling.z =size_value*k_size
-       
-	 }            
-}
-</script>
-   </body>
-<script>
-	function editMode() {
-		upload_form.style.zIndex=0
-		return_button.style.zIndex=8
-		reset_button.style.zIndex=8
-		photo_button.style.zIndex=8
-		fix_button.style.zIndex=8
-		level.style.zIndex=8
-		size.style.zIndex=8
-		
-		    BABYLON.VirtualJoystick.Canvas.style.zIndex = "3";
+        BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
 
-		console.log("editMode")
-	}
+        console.log("uploadMode")
 
-	function uploadMode() {
-		upload_form.style.zIndex=8
-		return_button.style.zIndex=0
-		photo_button.style.zIndex=0
-		fix_button.style.zIndex=0
-		reset_button.style.zIndex=0
-	     level.style.zIndex=0
-		size.style.zIndex=0
-		
-		   
-		    BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
+    }
 
-		console.log("uploadMode")
+    //sticks
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-	}
-
-//sticks
-var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-
-var leftJoystick = new BABYLON.VirtualJoystick(false);
+    var leftJoystick = new BABYLON.VirtualJoystick(false);
     var rightJoystick = new BABYLON.VirtualJoystick(true);
     BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
- 
- var movespeed = 2.5
-  
- scene.onBeforeRenderObservable.add(()=>{
-        if(leftJoystick.pressed){
-            moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-          for (let i = 0; i < scene.meshes.length; i++) {
-	    scene.meshes[i].rotation.x+=moveXl
-            scene.meshes[i].rotation.y+=moveYl
-     	 }            
+
+    var movespeed = 2.5
+
+    scene.onBeforeRenderObservable.add(() => {
+        if (leftJoystick.pressed) {
+            moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
+            moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].rotation.x += moveXl
+                scene.meshes[i].rotation.y += moveYl
+            }
         }
-        if(rightJoystick.pressed){
-            moveXr = rightJoystick.deltaPosition.x * (engine.getDeltaTime()/1000) * movespeed;
-            moveZr = rightJoystick.deltaPosition.y * (engine.getDeltaTime()/1000) * movespeed;
-         for (let j = 0; j < scene.meshes.length; j++) {
-	   scene.meshes[j].position.x+=moveXr
-           scene.meshes[j].position.z+=moveZr
-         }
-	}
+        if (rightJoystick.pressed) {
+            moveXr = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
+            moveZr = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+            for (let j = 0; j < scene.meshes.length; j++) {
+                scene.meshes[j].position.x += moveXr
+                scene.meshes[j].position.z += moveZr
+            }
+        }
     })
-
-
 </script>
+
 </html>
