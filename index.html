@@ -56,14 +56,28 @@
     height: 100px;
     position: absolute;
     bottom: 150px;
-    left: 45%;
+    left: 50%;
+}
+#fix {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 150px;
+    left: 40%;
 }
 #return {
     width: 100px;
     height: 100px;
     position: absolute;
     top: 150px;
-    left: 45%;
+    left: 40%;
+}
+#reset {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
 }
 
 #level{
@@ -241,9 +255,35 @@ function readFiles() {
 <script>
 	let return_button = document.getElementById('return')
 	function returnClick() {
+			console.log("returnClick")
+
   		document.getElementById('files').value = "";
 		scene.meshes = scene.meshes.constructor();
 		uploadMode();
+	}
+</script>
+<button id="reset" class="ui" onclick="resetClick()">return</button>
+<script>
+	let reset_button = document.getElementById('reset')
+	function resetClick() {
+		console.log("resetClick")
+
+		for ( let i = 0; i < scene.meshes.length; i++) {
+			scene.meshes[i].position.x = 0;		
+			scene.meshes[i].position.y = 0;		
+			scene.meshes[i].position.z = 0;
+		
+			scene.meshes[i].scaling.x = 1;		
+			scene.meshes[i].scaling.y = 1;		
+			scene.meshes[i].scaling.z = 1;
+
+			scene.meshes[i].rotation.x = 0;		
+			scene.meshes[i].rotation.y = 0;		
+			scene.meshes[i].rotation.z = 0;
+
+			size.value = 50;
+			level.value = 0;
+		}
 	}
 </script>
 <button id="photo" class="ui" onclick="photoClick()">photo</button>
@@ -262,6 +302,27 @@ function readFiles() {
 				ui_classes[i].style.opacity = 1;
 			} 
 		}, 1500);
+		 
+	}
+</script>
+<button id="fix" class="ui" onclick="fixClick()">photo</button>
+<script>
+	let fix_check = false;
+      	let fix_button = document.getElementById('fix')
+	function fixClick() {
+		console.log("fixClick",fix_check);
+		
+		swich(fix_check) {
+			case false : {
+				
+			 fix_check = true;
+			} break;
+			case true : {
+
+			
+			 fix_check = false;
+			} break;
+		}
 		 
 	}
 </script>
