@@ -80,7 +80,8 @@
 
         #yrotation {
 	     position: absolute;
-            bottom: 10%;
+            left: 10%;
+            bottom: 5%;
             width: 80%;
          }
     </style>
@@ -336,8 +337,8 @@
             moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveZl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
             for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].rotation.x += moveXl
-                scene.meshes[i].rotation.z += moveZl  
+                scene.meshes[i].rotation.x += moveZl
+                scene.meshes[i].rotation.z += moveXl  
             }
         }
         if (leftJoystick.pressed) {
