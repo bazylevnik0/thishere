@@ -313,8 +313,6 @@
     BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
 
     var movespeed = 2.5
-
-    
     scene.onBeforeRenderObservable.add(() => {
         if (rightJoystick.pressed) {
             moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
@@ -322,7 +320,8 @@
             console.log("r")
 	    for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
-                scene.meshes[i].rotation.z += moveYl
+                scene.meshes[i].rotation.y += moveYl
+                scene.meshes[i].rotation.z += moveYl/2 
             }
         }
         if (leftJoystick.pressed) {
