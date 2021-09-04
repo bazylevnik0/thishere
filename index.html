@@ -77,6 +77,11 @@
             transform: rotate(270deg);
             width: 100%;
         }
+
+        #yrotation {
+            position: absolute;
+            width: 90%;
+        }
     </style>
 
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
@@ -273,6 +278,20 @@
             }
         }
     </script>
+    <div class="slidecontainer">
+        <input type="yrotation" min="-50" max="50" value="0" class="ui" id="yrotation" oninput="yrotationChange()">
+    </div>
+    <script>
+        yrotation = document.getElementById('yrotation');
+        let yrotation_value;
+
+        function yrotationChange() {
+            yrotation_value = yrotation.value;
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].rotation.y += yrotation_value * 0.01
+            }
+        }
+    </script>
 </body>
 <script>
     function editMode() {
@@ -281,6 +300,7 @@
         photo_button.style.zIndex = 8
         level.style.zIndex = 8
         size.style.zIndex = 8
+        yrotation.style.zIndex = 8
 
         BABYLON.VirtualJoystick.Canvas.style.zIndex = "3";
 
@@ -293,6 +313,7 @@
         photo_button.style.zIndex = 0
         level.style.zIndex = 0
         size.style.zIndex = 0
+        yrotation.style.zIndex = 0
 
 
         BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
@@ -312,17 +333,16 @@
     scene.onBeforeRenderObservable.add(() => {
 	 if (rightJoystick.pressed) {
             moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
-            moveYl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+            moveZl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
             console.log("L:","X:",moveXl,"Y:",moveYl)
 	    for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
-                scene.meshes[i].rotation.y += moveYl
-                scene.meshes[i].rotation.z -= moveYl/3 + moveXl/4  
+                scene.meshes[i].rotation.z += moveZl  
             }
         }
         if (leftJoystick.pressed) {
             moveXr = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
-            mover = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+            moveZr = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
 	    console.log("R:","X:",moveXr,"Y:",moveZr)
             for (let j = 0; j < scene.meshes.length; j++) {
                 scene.meshes[j].position.x += moveXr * 10
