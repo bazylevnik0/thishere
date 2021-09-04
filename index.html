@@ -99,15 +99,15 @@
         navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(console.log("catch"));
 
         var cameras_array = []
-
+	let check_back_camera = false;
         function gotDevices(deviceInfos) {
             for (var i = 0; i !== deviceInfos.length; ++i) {
                 var deviceInfo = deviceInfos[i];
                 if (deviceInfo.kind === 'videoinput') {
 		    console.log(deviceInfo.label.toString())
                     if (deviceInfo.label.toString().indexOf('back') !== -1) {
-			console.log(deviceInfo)
-                        navigator.mediaDevices.getUserMedia({
+	                check_back_camera = true;
+			navigator.mediaDevices.getUserMedia({
                             audio: false,
                             video: {
                                 deviceId: deviceInfo.deviceId
@@ -115,12 +115,12 @@
                         }).then(handleSuccess)
                     }
                 }
-		/*
-                navigator.mediaDevices.getUserMedia({
-                    audio: false,
-                    video: true
-                }).then(handleSuccess)
-		*/
+		if ( check_back_camera == false  ) {
+               	 	navigator.mediaDevices.getUserMedia({
+                    		audio: false,
+                    		video: true
+                	}).then(handleSuccess)
+		}		
             }
 	}
     </script>
