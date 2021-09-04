@@ -317,17 +317,18 @@
     
     scene.onBeforeRenderObservable.add(() => {
         if (rightJoystick.pressed) {
-            moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
-            moveYl = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
-            for (let i = 0; i < scene.meshes.length; i++) {
+            moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
+            moveYl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+            console.log("l")
+	    for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
                 scene.meshes[i].rotation.z += moveYl
             }
         }
         if (leftJoystick.pressed) {
-            moveXr = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
-            moveZr = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
-	    console.log(moveXr, moveZr)
+            moveXr = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
+            moveZr = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+	    console.log("r")
             for (let j = 0; j < scene.meshes.length; j++) {
                 scene.meshes[j].position.x += moveXr
                 scene.meshes[j].position.z += moveZr
