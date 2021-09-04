@@ -151,19 +151,14 @@
         var k_size;
         function loadFiles(path,name) {
 	    console.log("loadFiles")
- 
-            BABYLON.SceneLoader.ImportMeshAsync("", path, name).then((result) => {
-															//must be dynamic
-                switch (name) {
-                    case 'tree.obj':
-                        k_size = 0.00025;
-                        break;
-                    case 'book.obj':
-                        k_size = 0.0125;
-                        break;
-                    default:
-                        k_size = 1;
-                }
+ 	    BABYLON.SceneLoader.ImportMeshAsync("", path, name).then((result) => {
+														//must be dynamic
+            if (name =='tree.obj') {
+             	k_size = 0.00025;
+	    } else if  (name == 'book.obj') {
+                k_size = 0.0125;	
+	    } else k_size = 1;
+             
                 for (let i = 0; i < result.meshes.length; i++) {
 
                     result.meshes[i].scaling.x = 50 * k_size;
@@ -198,11 +193,14 @@
             files = document.getElementById('files').files;
  	
 	    editMode();
+	    console.log(files[0])
+		
+	    console.log(files[0].name)
 	   if(sample_tree_check) {
 		loadFiles(sample_tree[0], sample_tree[1]);
 	   } else if(sample_book_check) {
 		loadFiles(sample_book[0], sample_book[1]);
-	   } else loadFiles(files[0].name, files[0].webkitRelativePath);
+	   } else loadFiles( files[0].webkitRelativePath , files[0].name);
        
          }
     </script>
