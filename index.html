@@ -79,10 +79,10 @@
         }
 
         #yrotation {
-            position: absolute;
+	     position: absolute;
+            bottom: 5%;
             width: 90%;
-	    bottom: 5%;
-        }
+         }
     </style>
 
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
@@ -280,7 +280,7 @@
         }
     </script>
     <div class="slidecontainer">
-        <input type="yrotation" min="-50" max="50" value="0" class="ui" id="yrotation" oninput="yrotationChange()">
+        <input type="range" min="-50" max="50" value="0" class="ui" id="yrotation" oninput="yrotationChange()">
     </div>
     <script>
         yrotation = document.getElementById('yrotation');
