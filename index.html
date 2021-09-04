@@ -213,15 +213,11 @@
     <form id="upload" method="post" enctype="multipart/form-data">
         <div>
             <label id="label" for="files">upload</label>
+            <select id="select">
+    	          <option value="1">book</option>   
+    	          <option value="2">tree</option>
+  	    </select>
             <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true">
-	    <div id="select" class="custom-select" style="width:200px;">
-  		<select>
-    			<option value="0">from lib:</option>
-    	  	        <option value="1">book</option>   
-    	  	        <option value="2">tree</option>
-  		</select>
-            </div>
-        <div>
             <button>Submit</button>
         </div>
     </form>
