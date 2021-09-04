@@ -24,7 +24,10 @@
             padding: 0;
 	    background-color: black;
         }
-
+	img {
+	   width: 150px;
+	   height: 150px;
+	}
         #renderCanvas {
             width: 100%;
             height: 100%;
@@ -220,7 +223,10 @@
     <script>
 	let upload_form = document.getElementById('upload')
         let select = document.getElementById("select")
-	switch (select.value) {
+        var files, reader
+        function readFiles() {
+	    console.log("readFiles")
+	    	switch (select.value) {
 		case "1" : {
 			sample_book_check = true
 			sample_tree_check = false
@@ -230,9 +236,8 @@
 			sample_tree_check = true
 		}
 	}
-        var files, reader
-        function readFiles() {
-	    console.log("readFiles")
+
+
             files = document.getElementById('files').files;
  	
 	    editMode();
