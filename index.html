@@ -108,7 +108,7 @@
 <body>
     <video id="player" width="100%" height="100%" autoplay="true"></video>
     <script>
-								        //FADEIN FADEOUT animation for UI 
+	//activate html player							        //FADEIN FADEOUT animation for UI 
         var player = document.getElementById('player');
 
         var handleSuccess = function(stream) {
@@ -117,6 +117,7 @@
 													//ERROR if one camera
         navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(console.log("catch"));
 
+	//activate device camera
         var cameras_array = []
 	let check_back_camera = false;
         function gotDevices(deviceInfos) {
@@ -144,9 +145,11 @@
     </script>
     <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
     <script>
+	//activate canvas
         const canvas = document.getElementById("renderCanvas"); 
         const engine = new BABYLON.Engine(canvas, true); 
 
+	//create scene
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
@@ -168,7 +171,7 @@
         });
 
 
-        //upload
+        //upload in scene
         var k_size;
         function loadFiles(path,name) {
 	    console.log("loadFiles")
@@ -213,6 +216,7 @@
         </div>
     </form>
     <script>
+	//upload from html
 	let upload_form = document.getElementById('upload')
         var files, reader
         function readFiles() {
@@ -336,6 +340,7 @@
     </script>
 </body>
 <script>
+    //mode & control
     function editMode() {
         upload_form.style.zIndex = 0
         return_button.style.zIndex = 8
