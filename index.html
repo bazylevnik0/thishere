@@ -50,6 +50,10 @@
     font-size: 30px;
         }
 
+        input[type="file"] {
+   	 display: none;
+	}
+
         #photo {
             width: 100px;
             height: 100px;
@@ -112,7 +116,7 @@
 <body>
     <video id="player" width="100%" height="100%" autoplay="true"></video>
     <script>
-	//activate html player							        //FADEIN FADEOUT animation for UI 
+								        //FADEIN FADEOUT animation for UI 
         var player = document.getElementById('player');
 
         var handleSuccess = function(stream) {
@@ -121,7 +125,6 @@
 													//ERROR if one camera
         navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(console.log("catch"));
 
-	//activate device camera
         var cameras_array = []
 	let check_back_camera = false;
         function gotDevices(deviceInfos) {
@@ -149,11 +152,9 @@
     </script>
     <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
     <script>
-	//activate canvas
         const canvas = document.getElementById("renderCanvas"); 
         const engine = new BABYLON.Engine(canvas, true); 
 
-	//create scene
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
@@ -175,7 +176,7 @@
         });
 
 
-        //upload in scene
+        //upload
         var k_size;
         function loadFiles(path,name) {
 	    console.log("loadFiles")
@@ -212,15 +213,20 @@
 
     <form id="upload" method="post" enctype="multipart/form-data">
         <div>
-            <label id="label" for="files">Choose file to upload</label>
+            <label id="label" for="files">upload</label>
             <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true">
-        </div>
+	    <div id="select" class="custom-select" style="width:200px;">
+  		<select>
+    			<option value="0">from lib:</option>
+    	  	        <option value="1">book</option>   
+    	  	        <option value="2">tree</option>
+  		</select>
+            </div>
         <div>
             <button>Submit</button>
         </div>
     </form>
     <script>
-	//upload from html
 	let upload_form = document.getElementById('upload')
         var files, reader
         function readFiles() {
@@ -344,7 +350,6 @@
     </script>
 </body>
 <script>
-    //mode & control
     function editMode() {
         upload_form.style.zIndex = 0
         return_button.style.zIndex = 8
