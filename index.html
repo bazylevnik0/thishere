@@ -223,6 +223,17 @@
     </form>
     <script>
 	let upload_form = document.getElementById('upload')
+        let select = document.getElementById("select")
+	switch (select.value) {
+		case "1" : {
+			sample_book_check = true
+			sample_tree_check = false
+		} break;
+		case "2" : {
+			sample_book_check = false
+			sample_tree_check = true
+		}
+	}
         var files, reader
         function readFiles() {
 	    console.log("readFiles")
