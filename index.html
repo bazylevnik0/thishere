@@ -302,7 +302,7 @@
         function xrotationChange() {
             xrotation_value = xrotation.value;
             for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].rotation.x += xrotation_value * 0.05
+                scene.meshes[i].rotation.x = xrotation_value * 0.05
             }
         }
     </script>
@@ -316,7 +316,7 @@
         function yrotationChange() {
             yrotation_value = yrotation.value;
             for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].rotation.y += yrotation_value * 0.05
+                scene.meshes[i].rotation.y = yrotation_value * 0.05
             }
         }
     </script>
@@ -330,7 +330,7 @@
         function zrotationChange() {
             zrotation_value = zrotation.value;
             for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].rotation.z += zrotation_value * 0.05
+                scene.meshes[i].rotation.z = zrotation_value * 0.05
             }
         }
     </script>
