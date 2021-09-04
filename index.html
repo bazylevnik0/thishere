@@ -45,7 +45,6 @@
     right: 30%;
     top: 40%;
     color: white;
-    line-height: 5;
     font-size: 30px;
         }
 
@@ -163,7 +162,7 @@
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 	
-	var sample_tree = [ "./" , "tree.obj"] , sample_tree_check = false
+	var sample_tree = [ "./" , "tree.obj"] , sample_tree_check = true
 	var sample_book = [ "./" , "book.obj"] , sample_book_check = false
 
         engine.runRenderLoop(function() {
@@ -214,12 +213,12 @@
         <div>
             <label id="label_upload" for="files"><h1>+</h1></label><br>
             <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true"><br>
-            <label id="label_demo" for="samples"></h1>*</h1></label><br>
+            <label id="label_demo" for="samples"></h1>^</h1></label><br>
             <select id="select"for="samples">
     	          <option value="1">book</option>   
     	          <option value="2">tree</option>
   	    </select><br>
-            <button id="submit" name="samples">Submit</button>
+            <button id="submit" name="samples" onclick="readFiles()">Submit</button>
         </div>
     </form>
     <script>
