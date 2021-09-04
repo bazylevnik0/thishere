@@ -161,7 +161,7 @@
                         k_size = 0.00025;
                         break;
                     case 'book.obj':
-                        k_size = 0.0125;
+                        k_size = 0.0065;
                         break;
                     default:
                         k_size = 1;
@@ -233,7 +233,6 @@
             }
 
             setTimeout(function() {
-
                 for (let i = 0; i < ui_classes.length; i++) {
                     ui_classes[i].style.opacity = 1;
                 }
@@ -249,14 +248,10 @@
         let level_value;
 
         function levelChange() {
-            console.log("levelChange")
-
             level_value = level.value;
             for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].position.y = level_value * 0.2
-
             }
-
         }
     </script>
     <div class="slidecontainer">
@@ -309,9 +304,7 @@
     //sticks
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-      var joysticsoystics = new VirtualJoysticksCamera();
-    //var rightJoystick = new BABYLON.VirtualJoystick(false);
-    /*
+    var rightJoystick = new BABYLON.VirtualJoystick(false);
     var leftJoystick = new BABYLON.VirtualJoystick(true);
     BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
 
@@ -324,10 +317,9 @@
 	    for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
                 scene.meshes[i].rotation.y += moveYl
-                scene.meshes[i].rotation.z -= moveYl/2 
+                scene.meshes[i].rotation.z -= moveYl/3 + moveXl/4  
             }
         }
-	
         if (leftJoystick.pressed) {
             moveXr = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             mover = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
@@ -338,7 +330,6 @@
             }
         }
     })
-	*/
 </script>
 
 </html>
