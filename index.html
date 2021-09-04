@@ -104,8 +104,7 @@
             for (var i = 0; i !== deviceInfos.length; ++i) {
                 var deviceInfo = deviceInfos[i];
                 if (deviceInfo.kind === 'videoinput') {
-		    console.log(deviceInfo.label.toString())
-                    if (deviceInfo.label.toString().indexOf('back') !== -1) {
+		    if (deviceInfo.label.toString().indexOf('back') !== -1) {
 	                check_back_camera = true;
 			navigator.mediaDevices.getUserMedia({
                             audio: false,
@@ -114,14 +113,14 @@
                             }
                         }).then(handleSuccess)
                     }
-                }
-		if ( check_back_camera == false  ) {
-               	 	navigator.mediaDevices.getUserMedia({
-                    		audio: false,
+                }	
+            }
+	    if ( check_back_camera == false  ) {
+            	 	navigator.mediaDevices.getUserMedia({
+                   		audio: false,
                     		video: true
                 	}).then(handleSuccess)
-		}		
-            }
+	    }	
 	}
     </script>
     <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
