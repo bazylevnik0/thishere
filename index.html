@@ -326,6 +326,7 @@
         if (rightJoystick.pressed) {
             moveXr = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveZr = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
+	    console.log(Xr, Zr)
             for (let j = 0; j < scene.meshes.length; j++) {
                 scene.meshes[j].position.x += moveXr
                 scene.meshes[j].position.z += moveZr
