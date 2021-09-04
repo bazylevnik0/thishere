@@ -308,12 +308,13 @@
     //sticks
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    var leftJoystick = new BABYLON.VirtualJoystick(false);
-    var rightJoystick = new BABYLON.VirtualJoystick(true);
+    var rightJoystick = new BABYLON.VirtualJoystick(false);
+    var leftJoystick = new BABYLON.VirtualJoystick(true);
     BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
 
     var movespeed = 2.5
 
+    
     scene.onBeforeRenderObservable.add(() => {
         if (leftJoystick.pressed) {
             moveXl = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
