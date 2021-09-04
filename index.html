@@ -50,7 +50,7 @@
             width: 100px;
             height: 100px;
             position: absolute;
-            bottom: 150px;
+            bottom: 250px;
             left: 45%;
         }
 
@@ -65,20 +65,32 @@
         #level {
             position: absolute;
             left: 40%;
-            top: 50%;
+            top: 40%;
             transform: rotate(270deg);
-            width: 100%;
+            width: 90%;
         }
 
         #size {
             position: absolute;
             right: 40%;
-            top: 50%;
+            top: 40%;
             transform: rotate(270deg);
-            width: 100%;
+            width: 90%;
         }
 
+        #xrotation {
+	     position: absolute;
+            left: 10%;
+            bottom: 15%;
+            width: 80%;
+         }
         #yrotation {
+	     position: absolute;
+            left: 10%;
+            bottom: 10%;
+            width: 80%;
+         }
+        #zrotation {
 	     position: absolute;
             left: 10%;
             bottom: 5%;
@@ -281,6 +293,20 @@
         }
     </script>
     <div class="slidecontainer">
+        <input type="range" min="-50" max="50" value="0" class="ui" id="xrotation" oninput="xrotationChange()">
+    </div>
+    <script>
+        xrotation = document.getElementById('xrotation');
+        let yrotation_value;
+
+        function xrotationChange() {
+            yrotation_value = yrotation.value;
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].rotation.x += xrotation_value * 0.05
+            }
+        }
+    </script>
+    <div class="slidecontainer">
         <input type="range" min="-50" max="50" value="0" class="ui" id="yrotation" oninput="yrotationChange()">
     </div>
     <script>
@@ -290,7 +316,21 @@
         function yrotationChange() {
             yrotation_value = yrotation.value;
             for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].rotation.y += yrotation_value * 0.1
+                scene.meshes[i].rotation.y += yrotation_value * 0.05
+            }
+        }
+    </script>
+    <div class="slidecontainer">
+        <input type="range" min="-50" max="50" value="0" class="ui" id="zrotation" oninput="zrotationChange()">
+    </div>
+    <script>
+        zrotation = document.getElementById('zrotation');
+        let zrotation_value;
+
+        function zrotationChange() {
+            zrotation_value = zrotation.value;
+            for (let i = 0; i < scene.meshes.length; i++) {
+                scene.meshes[i].rotation.z += zrotation_value * 0.05
             }
         }
     </script>
@@ -328,7 +368,7 @@
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     var rightJoystick = new BABYLON.VirtualJoystick(false);
-    var leftJoystick = new BABYLON.VirtualJoystick(true);
+    var leftJoystick  = new BABYLON.VirtualJoystick(true);
     BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
 
     var movespeed = 2.5
@@ -337,8 +377,8 @@
             moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveZl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
             for (let i = 0; i < scene.meshes.length; i++) {
-                scene.meshes[i].rotation.x += moveZl
-                scene.meshes[i].rotation.z += moveXl  
+                scene.meshes[i].position.x += moveZl
+                scene.meshes[i].position.z += moveXl  
             }
         }
         if (leftJoystick.pressed) {
