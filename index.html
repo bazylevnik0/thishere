@@ -318,20 +318,20 @@
         if (rightJoystick.pressed) {
             moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveYl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
-            console.log("L:",moveXl,moveYl)
+            console.log("L:","X:",moveXl,"Y:",moveYl)
 	    for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
                 scene.meshes[i].rotation.y += moveYl
-                scene.meshes[i].rotation.z += moveYl/2 
+                scene.meshes[i].rotation.z -= moveYl/2 
             }
         }
         if (leftJoystick.pressed) {
             moveXr = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveZr = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
-	    console.log("R:",moveXr,moveZr)
+	    console.log("R:","X:",moveXr,"Y:",moveZr)
             for (let j = 0; j < scene.meshes.length; j++) {
-                scene.meshes[j].position.x += moveXr
-                scene.meshes[j].position.z += moveZr
+                scene.meshes[j].position.x += moveXr * 10
+                scene.meshes[j].position.z += moveZr * 5
             }
         }
     })
