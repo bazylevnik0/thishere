@@ -172,7 +172,8 @@
                     result.meshes[i].scaling.y = 50 * k_size;
                     result.meshes[i].scaling.z = 50 * k_size;;
 
-                    result.meshes[i].position.z = 0;
+                    result.meshes[i].position.z = -7;
+                    result.meshes[i].position.y = -2;
 
                     var myMesh1 = scene.getMeshByName("myMesh_1");
                     console.log(result)
@@ -317,7 +318,7 @@
         if (rightJoystick.pressed) {
             moveXl = rightJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveYl = rightJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
-            console.log(moveXl,moveYl)
+            console.log("L:",moveXl,moveYl)
 	    for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += moveXl
                 scene.meshes[i].rotation.y += moveYl
@@ -327,7 +328,7 @@
         if (leftJoystick.pressed) {
             moveXr = leftJoystick.deltaPosition.x * (engine.getDeltaTime() / 1000) * movespeed;
             moveZr = leftJoystick.deltaPosition.y * (engine.getDeltaTime() / 1000) * movespeed;
-	    console.log(moveXr,moveZr)
+	    console.log("R:",moveXr,moveZr)
             for (let j = 0; j < scene.meshes.length; j++) {
                 scene.meshes[j].position.x += moveXr
                 scene.meshes[j].position.z += moveZr
