@@ -297,10 +297,10 @@
     </div>
     <script>
         xrotation = document.getElementById('xrotation');
-        let yrotation_value;
+        let xrotation_value;
 
         function xrotationChange() {
-            yrotation_value = yrotation.value;
+            xrotation_value = xrotation.value;
             for (let i = 0; i < scene.meshes.length; i++) {
                 scene.meshes[i].rotation.x += xrotation_value * 0.05
             }
