@@ -32,6 +32,7 @@
 	h1 {
   	  margin: 0px;
    	 padding: 0px;
+    height: 75px;
 	}
         #renderCanvas {
             width: 100%;
@@ -51,12 +52,19 @@
     width: 40%;
     left: 30%;
     right: 30%;
-    top: 30%;
+    top: 25%;
     color: white;
     font-size: 6rem;
 text-align: center;  
 ine-height: 75px;
       }
+
+      #files {
+opacity: 0.0;
+    height: 150px;
+    position: relative;
+    bottom: 150px;
+}
 
         #photo {
             width: 100px;
@@ -236,7 +244,7 @@ ine-height: 75px;
     <form id="upload" method="post" enctype="multipart/form-data">
         <div>
             <label id="label_upload" for="files"><h1>+</h1></label><br>
-            <img src="load.png" width="75" height="75" for="files" id="loadimg">
+            <img src="load.png" width="150px" height="150px" for="files" id="loadimg">
 	    <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true"><br>
             <label id="label_demo" for="samples"></h1>:</h1></label><br>
             <select id="select"for="samples">
