@@ -212,7 +212,7 @@
         <div>
             <label id="label_upload" for="files"><h1>+</h1></label><br>
             <input type="file" id="files" name="files" multiple onchange="readFiles()" webkitrelativepath="true"><br>
-            <label id="label_demo" for="samples"></h1>..</h1></label><br>
+            <label id="label_demo" for="samples"></h1>:</h1></label><br>
             <select id="select"for="samples">
     	          <option value="1">book</option>   
     	          <option value="2">tree</option>
@@ -366,28 +366,6 @@
         xrotation.style.zIndex     = 8
         yrotation.style.zIndex     = 8
         zrotation.style.zIndex     = 8
-        return_button.style.opacity = 0.0
-        photo_button.style.opacity  = 0.0
-        level.style.opacity         = 0.0
-        size.style.opacity          = 0.0
-        xrotation.style.opacity     = 0.0
-        yrotation.style.opacity     = 0.0
-        zrotation.style.opacity     = 0.0
-
-        BABYLON.VirtualJoystick.Canvas.style.zIndex = "3";
-
-        console.log("editMode")
-    }
-
-    function uploadMode() {
-        upload_form.style.zIndex = 8
-        return_button.style.zIndex = 0
-        photo_button.style.zIndex = 0
-        level.style.zIndex = 0
-        size.style.zIndex = 0
-        xrotation.style.zIndex = 0
- 	yrotation.style.zIndex = 0
- 	zrotation.style.zIndex = 0
         return_button.style.opacity = 1.0
         photo_button.style.opacity  = 1.0
         level.style.opacity         = 1.0
@@ -395,6 +373,28 @@
         xrotation.style.opacity     = 1.0
         yrotation.style.opacity     = 1.0
         zrotation.style.opacity     = 1.0
+
+        BABYLON.VirtualJoystick.Canvas.style.zIndex = "3";
+
+        console.log("editMode")
+    }
+
+    function uploadMode() {
+        upload_form.style  .zIndex = 8
+        return_button.style.zIndex = 0
+        photo_button.style .zIndex = 0
+        level.style        .zIndex = 0
+        size.style         .zIndex = 0
+        xrotation.style    .zIndex = 0
+ 	yrotation.style    .zIndex = 0
+ 	zrotation.style    .zIndex = 0
+        return_button.style.opacity = 0.0
+        photo_button.style .opacity = 0.0
+        level.style        .opacity = 0.0
+        size.style         .opacity = 0.0
+        xrotation.style    .opacity = 0.0
+        yrotation.style    .opacity = 0.0
+        zrotation.style    .opacity = 0.0
 
 
         BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
