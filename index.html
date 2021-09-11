@@ -217,7 +217,7 @@
     	          <option value="1">book</option>   
     	          <option value="2">tree</option>
   	    </select><br>
-            <img src="google.com" id="submit" name="samples" onclick="readFiles()">
+            <img src="button.png" id="submit" name="samples" onclick="readFiles()" width="150px" height="150px">
         </div>
     </form>
     <script>
@@ -249,7 +249,7 @@
        
          }
     </script>
-    <button id="return" class="ui" onclick="returnClick()">return</button>
+    <img src="back.png" id="return" class="ui" onclick="returnClick()" width="150px" height="150px">
     <script>
         let return_button = document.getElementById('return')
 
@@ -261,7 +261,7 @@
             uploadMode();
         }
     </script>
-    <button id="photo" class="ui" onclick="photoClick()">photo</button>
+    <img src="photo.png" id="photo" class="ui" onclick="photoClick()" width="150px" height="150px">
     <script>
         let ui_classes = document.getElementsByClassName('ui');
         let photo_button = document.getElementById('photo')
@@ -360,12 +360,19 @@
     function editMode() {
         upload_form.style.zIndex = 0
         return_button.style.zIndex = 8
-        photo_button.style.zIndex = 8
-        level.style.zIndex = 8
-        size.style.zIndex = 8
-        xrotation.style.zIndex = 8
-       yrotation.style.zIndex = 8
-       zrotation.style.zIndex = 8
+        photo_button.style.zIndex  = 8
+        level.style.zIndex         = 8
+        size.style.zIndex          = 8
+        xrotation.style.zIndex     = 8
+        yrotation.style.zIndex     = 8
+        zrotation.style.zIndex     = 8
+        return_button.style.opacity = 0.0
+        photo_button.style.opacity  = 0.0
+        level.style.opacity         = 0.0
+        size.style.opacity          = 0.0
+        xrotation.style.opacity     = 0.0
+        yrotation.style.opacity     = 0.0
+        zrotation.style.opacity     = 0.0
 
         BABYLON.VirtualJoystick.Canvas.style.zIndex = "3";
 
@@ -379,8 +386,15 @@
         level.style.zIndex = 0
         size.style.zIndex = 0
         xrotation.style.zIndex = 0
- yrotation.style.zIndex = 0
- zrotation.style.zIndex = 0
+ 	yrotation.style.zIndex = 0
+ 	zrotation.style.zIndex = 0
+        return_button.style.opacity = 1.0
+        photo_button.style.opacity  = 1.0
+        level.style.opacity         = 1.0
+        size.style.opacity          = 1.0
+        xrotation.style.opacity     = 1.0
+        yrotation.style.opacity     = 1.0
+        zrotation.style.opacity     = 1.0
 
 
         BABYLON.VirtualJoystick.Canvas.style.zIndex = "0";
