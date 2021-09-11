@@ -101,6 +101,23 @@
             bottom: 5%;
             width: 80%;
          }
+
+	div#black1 {
+   	 position: absolute;
+   	 width: 100%;
+   	 height: 10%;
+   	 background-color: black;
+	    top: 0;
+	    z-index: 9;
+	}
+	div#black2 {
+   	 position: absolute;
+   	 width: 100%;
+   	 height: 10%;
+   	 background-color: black;
+	    bottom: 0;
+	    z-index: 9;
+	}
     </style>
 
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
@@ -207,7 +224,8 @@
 
         }
     </script>
-
+    <div id="black1"><div>
+    <div id="black2"><div>
     <form id="upload" method="post" enctype="multipart/form-data">
         <div>
             <label id="label_upload" for="files"><h1>+</h1></label><br>
@@ -389,7 +407,7 @@
  	yrotation.style    .zIndex = 0
  	zrotation.style    .zIndex = 0
         return_button.style.opacity = '0.0'
-        photo_button.style .opacity = '0.0
+        photo_button.style .opacity = '0.0'
         level.style        .opacity = '0.0'
         size.style         .opacity = '0.0'
         xrotation.style    .opacity = '0.0'
