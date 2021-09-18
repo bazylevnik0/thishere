@@ -250,7 +250,38 @@ img#submit {
                     console.log(result)
                 }
             })
+		
 
+BABYLON.DeviceOrientationCamera.prototype._checkInputs = function () {
+    BABYLON.FreeCamera.prototype._checkInputs.call(this);
+    if (this._initialQuaternion) {
+		this._cachedOrientationQuaternion = this.rotationQuaternion.clone();
+        this._initialQuaternion.multiplyToRef(this.rotationQuaternion, this.rotationQuaternion);
+    }
+};
+BABYLON.DeviceOrientationCamera.prototype.resetToCurrentRotation = function (axis) {
+    if (axis === void 0) { axis = BABYLON.Axis.Y; }
+    //can only work if this camera has a rotation quaternion already.
+    if (!this.rotationQuaternion)
+        return;
+    if (!this._initialQuaternion) {
+        this._initialQuaternion = new BABYLON.Quaternion();
+    }
+    //else {
+	this._initialQuaternion.copyFrom(this._cachedOrientationQuaternion || this.rotationQuaternion);
+    //}
+    ['x', 'y', 'z'].forEach(function (axisName) {
+        if (!axis[axisName]) {
+            this._initialQuaternion[axisName] = 0;
+        } else {
+			this._initialQuaternion[axisName] *= -1;
+		}
+    }, this);
+    this._initialQuaternion.normalize();
+	console.log(this._initialQuaternion);
+};
+
+camera.resetToCurrentRotation();
 
         }
 	console.log("check")
