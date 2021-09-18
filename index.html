@@ -203,7 +203,7 @@ img#submit {
         scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
         var camera = new BABYLON.DeviceOrientationCamera("DevOr_camera", new BABYLON.Vector3(0, 0, 0), scene);
-        //camera.setTarget(new BABYLON.Vector3(0, 0, -10));
+        camera.setTarget(new BABYLON.Vector3(0, 0, -10));
         camera.attachControl(canvas, true);
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
@@ -243,7 +243,7 @@ img#submit {
                     result.meshes[i].scaling.y = 50 * k_size;
                     result.meshes[i].scaling.z = 50 * k_size;;
 
-                    result.meshes[i].position.z = -7;
+		    result.meshes[i].position.z = camera.position.z +7;
                     result.meshes[i].position.y = -2;
 
                     var myMesh1 = scene.getMeshByName("myMesh_1");
@@ -253,6 +253,7 @@ img#submit {
 
 
         }
+	console.log("check")
     </script>
     <div id="black1"></div>
     <div id="black2"></div>
