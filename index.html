@@ -251,14 +251,7 @@ img#submit {
                 }
             })
 		
-
-BABYLON.DeviceOrientationCamera.prototype._checkInputs = function () {
-    BABYLON.FreeCamera.prototype._checkInputs.call(this);
-    if (this._initialQuaternion) {
-		this._cachedOrientationQuaternion = this.rotationQuaternion.clone();
-        this._initialQuaternion.multiplyToRef(this.rotationQuaternion, this.rotationQuaternion);
-    }
-};
+//https://www.babylonjs-playground.com/#2FOPX7#3 
 BABYLON.DeviceOrientationCamera.prototype.resetToCurrentRotation = function (axis) {
     if (axis === void 0) { axis = BABYLON.Axis.Y; }
     //can only work if this camera has a rotation quaternion already.
@@ -282,7 +275,7 @@ BABYLON.DeviceOrientationCamera.prototype.resetToCurrentRotation = function (axi
 };
 
 camera.resetToCurrentRotation();
-
+//----------------------------------------------
         }
 	console.log("check")
     </script>
