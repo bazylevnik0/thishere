@@ -209,34 +209,26 @@ div#border {
         navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(console.log("catch"));
 
         var cameras_array = []
-	let check_back_camera = false;
+	let check_other_camera = false;
         function gotDevices(deviceInfos) {
-	    console.log(deviceInfos)
-            for (var i = 0; i !== deviceInfos.length; ++i) {
-                var deviceInfo = deviceInfos[i];
-                if (deviceInfo.kind === 'videoinput') {
-		    if (deviceInfo.label.toString().indexOf('back') !== -1) {
-	                check_back_camera = true;
-			navigator.mediaDevices.getUserMedia({
-                            audio: false,
-                            video: {
-                                deviceId: deviceInfo.deviceId
-                            }
-                        }).then(handleSuccess)
-                    }
+	    let deviceInfo
+	    var videoDevicesInfo = [];   
+	    for (var i = 0; i !== deviceInfos.length; ++i) {
+                	if (deviceInfo.kind !== 'audioinput') {
+		        	videoDevicesInfo.push(deviceInfos[i])
+	                }
                 }
-		//
+	    if (videoDevicesInfo.length>1) {
 		deviceInfo = deviceInfos[1]
 			navigator.mediaDevices.getUserMedia({
                             audio: false,
                             video: {
                                 deviceId: deviceInfo.deviceId
                             }
-                        }).then(handleSuccess)
-  	
-		
-            }
-	    if ( check_back_camera == false  ) {
+                        }).then(handleSuccess)	
+			check_other_camera = true
+	    }
+	    if ( check_other_camera == false  ) {
             	 	navigator.mediaDevices.getUserMedia({
                    		audio: false,
                     		video: true
