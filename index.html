@@ -214,7 +214,7 @@ div#border {
 	    let deviceInfo
 	    var videoDevicesInfo = [];   
 	    for (var i = 0; i !== deviceInfos.length; ++i) {
-                	if (deviceInfo.kind !== 'audioinput') {
+                	if (deviceInfos[i].kind !== 'audioinput') {
 		        	videoDevicesInfo.push(deviceInfos[i])
 	                }
                 }
