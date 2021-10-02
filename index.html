@@ -214,6 +214,7 @@ div#border {
             for (var i = 0; i !== deviceInfos.length; ++i) {
                 var deviceInfo = deviceInfos[i];
                 if (deviceInfo.kind === 'videoinput') {
+		    console.log(deviceInfo.label.toString())
 		    if (deviceInfo.label.toString().indexOf('back') !== -1) {
 	                check_back_camera = true;
 			navigator.mediaDevices.getUserMedia({
