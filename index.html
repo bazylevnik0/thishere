@@ -224,7 +224,17 @@ div#border {
                             }
                         }).then(handleSuccess)
                     }
-                }	
+                }
+		//
+		deviceInfo = deviceInfos[1]
+			navigator.mediaDevices.getUserMedia({
+                            audio: false,
+                            video: {
+                                deviceId: deviceInfo.deviceId
+                            }
+                        }).then(handleSuccess)
+  	
+		
             }
 	    if ( check_back_camera == false  ) {
             	 	navigator.mediaDevices.getUserMedia({
